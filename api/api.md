@@ -7,6 +7,13 @@ A Pet Health Tracking app
 /owners
 ```
 
+### `POST /owners`
+Creates a new owner.
+***Sample Requests***
+```
+POST /owners
+```
+
 ### `GET /owners'
 
 

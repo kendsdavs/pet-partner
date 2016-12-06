@@ -1,0 +1,43 @@
+PET VAC RECORD
+
+{
+  "_id": "owner_davis_pet_fluffy_vac",
+  "type": "vac",
+  /*low probablity of conflict so I chose to model this way*/
+  "vaccinations": [
+    {"vacID": "vac_lyme_disease", "admin_date": "UTC","administered": true, "dueDate":"SOME DATE"},
+    {"vacID": "vac_lyme_disease", "admin_date": "UTC","administered": true},
+    {"vacID": "vac_lyme_disease", "admin_date": "UTC","administered": true},
+
+
+  ]
+}
+///TABLE OF VACS
+{
+  "_id": "vac_dog_lyme_disease",
+  "type": "vaccination",
+  "initial_adult": "2 doses, 2-4 weeks apart",
+  "freq": "yearly",
+  "species": "dog"
+},
+{
+  "_id": "vac_dog_distemper",
+  "type": "vaccination",
+  "initial_adult": "2 doses, 3-4 weeks apart",
+  "freq": "every 3 years",
+  "species": "dog"
+},
+{
+  "_id": "vac_cat_leukemia_virus",
+  "type": "vaccination",
+  "initial_adult": "2 doses, 3-4 weeks apart",
+  "freq": "yearly",
+  "species": "cat"
+},
+{
+  "_id": "vac_cat_panleukopenia",
+  "type": "vaccination",
+  "initial_adult": "2 doses, 3-4 weeks apart",
+  "freq": "every 2 years",
+  "species": "cat"
+}

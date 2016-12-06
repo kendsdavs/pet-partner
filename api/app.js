@@ -11,6 +11,8 @@ const dal = require('./dal.js')
 
 app.use(bodyParser.json()) //parses the json
 ///post handler
+
+////Owners/////
 app.post('/owners', function(req, res, next) {
   dal.createOwner(req.body, function(err, result) {
     res.status(201).send(result)
@@ -32,7 +34,7 @@ app.get('/owners', function(req, res, next) {
 })
 
 app.put('/owners/:id', function(req, res, next) {
-  dal.updateFriend(req.body, function(err, result) {
+  dal.updateOwner(req.body, function(err, result) {
     res.status(200).send(result)
   })
 })
@@ -40,11 +42,43 @@ app.put('/owners/:id', function(req, res, next) {
 app.delete('/owners/:id', function(req, res, next) {
   const ownerID = req.params.id
 
-    dal.deleteOwner(data, function(deletteerr, deleteresult) {
+    dal.deleteOwner(req.body, function(deletteerr, deleteresult) {
       res.status(200).send(deleteresult)
     })
-  
+
 })
+//////////PETS////////////////
+app.post('/owners/:id/pets', function(req, res, next) {
+  dal.createPet(req.body, function (err, result) {
+    res.status(201).send(result)
+  })
+})
+app.get('/owners/:ownerid/pets/:petid', function(req, res, next) {
+  const petID = req.params.petid
+  const ownerID = req.params.ownerid
+  dal.getPet(petID, function(err, result) {
+    res.status(200).send(result)
+  })
+  console.log(petID, ownerID)
+})
+app.get('/owners/:ownerid/pets', function(req, res, next) {
+  const ownerID = req.params.ownerid
+  dal.listOwnersPets(ownerID, function(err, result) {
+    res.status(200).send(result)
+  })
+  console.log(ownerID)
+})
+app.put('/owners/:id/pets/:id', function(req, res, next) {
+  dal.updatePet(req.body, function(err, result) {
+    res.status(200).send(result)
+  })
+})
+app.delete('/owners/:id/pets/:id', function(req, res, next) {
+  dal.deletePet(req.body, function(err, result) {
+    res.status(200).send(result)
+  })
+})
+
 
 app.get('/', function(req, res) {
   res.send('hello world')
