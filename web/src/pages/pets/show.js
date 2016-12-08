@@ -24,6 +24,8 @@ const Pet = React.createClass({
         <Link to="/pets">Back to Pets</Link>
         |
         <Link to="/procedures">View History</Link>
+        |
+        <Link to={`/pets/${this.state.pet._id}/edit`}>Edit Pet</Link>
       </div>
     )
   }

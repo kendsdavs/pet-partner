@@ -19,6 +19,19 @@ const PetForm = React.createClass({
             resolved: false
         }
     },
+    componentDidMount() {
+        if(this.props.params.id) {
+            console.log("pet id in state ", this.props.params.id)
+            data.get("pets", this.props.params.id)
+              .then(res => {
+                  console.log("results that were mounted ", res)
+                  return res
+              })
+              .then(res => {
+                  this.setState({pet: res})
+              })
+        }
+    },
     handleChange(field) {
         return (e) => {
             let pet = {
@@ -30,14 +43,22 @@ const PetForm = React.createClass({
     },
     handleSubmit(e) {
         e.preventDefault()
+        if(this.state.pet._id) {
+            console.log("id ", this.state.pet._id)
+            data.put("pets", this.state.pet._id, this.state.pet)
+            this.setState({resolved: true})
+        } else {
+
         data.post("pets", this.state.pet)
         this.setState({resolved: true})
+      }
     },
     render() {
+      const formName = this.props.params.id ? "Edit" : "New"
         return (
             <div>
-                {this.state.resolved ? <Redirect to='/owners' /> : null}
-                <h1>Add Pet</h1>
+                {this.state.resolved ? <Redirect to='/pets' /> : null}
+                <h1>{formName} Pet</h1>
                 <form onSubmit={this.handleSubmit}>
                     <TextField label="Name" type="text" value={this.state.pet.name} onChange={this.handleChange('name')}/>
 

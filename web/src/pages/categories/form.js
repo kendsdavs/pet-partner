@@ -32,9 +32,9 @@ const CategoryForm = React.createClass({
 
   handleSubmit(e) {
     e.preventDefault()
-    if(this.state.id) {
-      data.put("categories", this.state.id, this.state.category)
-        this.setState({resolved: true}) 
+    if(this.state.category._id) {
+      data.put("categories", this.state.category._id, this.state.category)
+        this.setState({resolved: true})
 
     } else {
 
