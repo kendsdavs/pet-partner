@@ -129,9 +129,9 @@ function listPets(data, cb) {
 
 /////////Procedures///////////
 function createProcedure(data, cb) {
-    data._id = "procedure_" + data.name
+
     data.type = "procedure"
-    db.put(data, function(err, response) {
+    db.post(data, function(err, response) {
         if (err) {
             console.log(err)
             return cb(err)

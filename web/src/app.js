@@ -2,10 +2,14 @@ const React = require('react')
 const { BrowserRouter, Match } = require('react-router')
 const Home = require('./pages/home')
 const About = require('./pages/about')
-const Owners = require('./pages/owners')
-const OwnerForm = require('./pages/owners/form')
+const Procedure = require('./pages/procedures/show')
+const ProcedureForm = require('./pages/procedures/form')
+const Procedures = require('./pages/procedures')
+const Pets = require('./pages/pets')
+const Pet = require('./pages/pets/show')
 const PetForm = require('./pages/pets/form')
-const OwnersPets = require('./pages/pets')
+const CategoryForm = require('./pages/categories/form')
+
 
 const App = React.createClass({
   render() {
@@ -16,11 +20,16 @@ const App = React.createClass({
           <Match exactly pattern="/" component={Home} />
           <Match pattern="/about" component={About} />
 
-          <Match exactly pattern="/owners" component={Owners} />
-          <Match pattern="/owners/new" component={OwnerForm} />
+          <Match exactly pattern="/pets" component={Pets} />
+          <Match pattern="/pets/new" component={PetForm} />
+          <Match pattern="/pets/:id/show" component={Pet} />
 
-          <Match pattern="/pets" component={OwnersPets} />
-          <Match pattern="/owners/pets/new" component={PetForm} />
+          <Match exactly pattern="/procedures" component={Procedures} />
+          <Match pattern="/procedures/new" component={ProcedureForm} />
+          <Match pattern="/procedures/:id/show" component={Procedure} />
+
+          <Match exactly pattern="/categories/new" component={CategoryForm} />
+
         </div>
       </BrowserRouter>
     )

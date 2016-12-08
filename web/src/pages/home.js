@@ -8,7 +8,7 @@ const Home = React.createClass({
         <h1>Home</h1>
         <Link to="/about">About</Link>
         ||
-        <Link to="/owners">Owners</Link>
+        <Link to="/pets">Find a Pet</Link>
       </div>
     )
   }

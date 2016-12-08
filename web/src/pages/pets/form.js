@@ -12,10 +12,10 @@ const PetForm = React.createClass({
                 breed: '',
                 dob: '',
                 markings: '',
+                owner: '',
                 gender: ''
 
             },
-            ownerid: 'owner_Davis_kends@kends.name',
             resolved: false
         }
     },
@@ -30,9 +30,7 @@ const PetForm = React.createClass({
     },
     handleSubmit(e) {
         e.preventDefault()
-        let model = 'owners/' + this.state.ownerid + "/pets"
-        console.log("this is the model ", model)
-        data.post(model, this.state.pet)
+        data.post("pets", this.state.pet)
         this.setState({resolved: true})
     },
     render() {
@@ -54,6 +52,8 @@ const PetForm = React.createClass({
                     <TextField label="Gender" type="text" value={this.state.pet.gender} onChange={this.handleChange('gender')}/>
 
                     <TextField label="Breeder" type="text" value={this.state.pet.breeder} onChange={this.handleChange('breeder')}/>
+
+                    <TextField label="Owner" type="text" value={this.state.pet.owner} onChange={this.handleChange('owner')}/>
 
                     <div>
                         <button>Submit</button>

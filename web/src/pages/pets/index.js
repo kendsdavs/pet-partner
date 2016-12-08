@@ -2,16 +2,16 @@ const React = require('react')
 const {Link} = require('react-router')
 const data = require('../../utils/data')()
 
-const OwnersPets = React.createClass({
+const Pets = React.createClass({
   getInitialState() {
     return {
       pets: [],
-      ownerID: "owner_Davis_kends@kends.name"
+
     }
   },
   componentDidMount() {
-    let petsRoute = "owners/" + this.state.ownerID + "/pets"
-    data.list(petsRoute)
+
+    data.list("pets")
       .then(rows => {
         console.log("these are the pets ", rows.docs)
         this.setState({pets: rows.docs})
@@ -19,7 +19,10 @@ const OwnersPets = React.createClass({
   },
   render() {
     const list = pet => <li key={pet._id}>
-      {pet.name + " The " + pet.animal_type}
+      <Link to={`/pets/${pet._id}/show`}>
+      {pet.name + " The " + pet.kind}
+    </Link>
+
       </li>
     return (
       <div>
@@ -27,9 +30,12 @@ const OwnersPets = React.createClass({
         <ul>
           {this.state.pets.map(list)}
         </ul>
+        <Link to="/pets/new">Add Pet</Link>
+        ||
+        <Link to="/">Home</Link>
       </div>
     )
   }
 })
 
-module.exports = OwnersPets
+module.exports = Pets

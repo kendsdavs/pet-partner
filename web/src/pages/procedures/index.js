@@ -3,33 +3,33 @@ const { Link } = require('react-router')
 const data = require('../../utils/data')()
 const { pluck , props } = require('ramda')
 
-const Owners = React.createClass({
+const Procedures = React.createClass({
   getInitialState() {
     return {
-      owners: []
+      procedures: []
     }
   },
   componentDidMount() {
-    data.list('owners')
+    data.list('procedures')
       .then(rows => {
         console.log('rows',rows)
         // const owners = pluck('_id'),rows.docs)
         console.log('rows',rows)
-        console.log("these are the owners ", rows.docs)
-        this.setState({owners: rows.docs})
+        console.log("these are the procedures ", rows.docs)
+        this.setState({procedures: rows.docs})
       })
 
   },
   render() {
-    const list = owner => <li key={owner._id}>
-      {owner.firstName + " " + owner.lastName}</li>
+    const list = p => <li key={p._id}>
+      {p.petname + " " + p.date + " " + p.proc}</li>
     return (
       <div>
-        <h1>Owners</h1>
+        <h1>Procedures</h1>
           <ul>
-            {this.state.owners.map(list)}
+            {this.state.procedures.map(list)}
           </ul>
-        <Link to="/owners/new">Add Owner</Link>
+        <Link to="/procedures/new">Add Procedure</Link>
         |
         <Link to="/">Home</Link>
         {/* <pre>
@@ -40,4 +40,4 @@ const Owners = React.createClass({
     )
   }
 })
-module.exports = Owners
+module.exports = Procedures
