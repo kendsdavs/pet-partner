@@ -9,6 +9,8 @@ const Home = React.createClass({
         <Link to="/about">About</Link>
         ||
         <Link to="/pets">Find a Pet</Link>
+        ||
+        <Link to="/procedures/new">Add a Procedure</Link>
       </div>
     )
   }

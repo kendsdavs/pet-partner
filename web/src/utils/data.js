@@ -18,6 +18,18 @@ module.exports = function () {
     })
     .then(res => res.json)
   }
+
+  const put = function(model, id, doc) {
+    return fetch(`${url}/${model}/${id}`, {
+      method: 'put',
+      body: JSON.stringify(doc),
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(res => res.json)
+  }
+
   const get = function(model, id) {
     return fetch(`${url}/${model}/${id}`)
       .then(res => res.json())
@@ -40,6 +52,7 @@ module.exports = function () {
     list,
     post,
     get,
-    remove
+    remove,
+    put
   }
 }

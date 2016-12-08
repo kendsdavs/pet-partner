@@ -32,6 +32,8 @@ const Procedures = React.createClass({
         <Link to="/procedures/new">Add Procedure</Link>
         |
         <Link to="/">Home</Link>
+        |
+        <Link to="/categories">View Categories</Link>
         {/* <pre>
           {JSON.stringify(this.state,null,2)}
         </pre> */}

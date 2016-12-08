@@ -6,13 +6,17 @@ const TextField = require('../../components/text-field')
 const CategoryForm = React.createClass({
   getInitialState() {
     return {
-      category: '',
+      category: {},
       resolved: false
     }
   },
   componentDidMount() {
     if(this.props.params.id) {
       data.get("categories", this.props.params.id)
+        .then(res => {
+        console.log("component mount res", res)
+        return res
+      })
         .then(res => {
           this.setState({category:res})
         })
@@ -28,8 +32,15 @@ const CategoryForm = React.createClass({
 
   handleSubmit(e) {
     e.preventDefault()
-    data.post("categories", this.state.category)
-    this.setState({resolved: true})
+    if(this.state.id) {
+      data.put("categories", this.state.id, this.state.category)
+        this.setState({resolved: true}) 
+
+    } else {
+
+      data.post("categories", this.state.category)
+      this.setState({resolved: true})
+    }
   },
   render() {
     const titleChange = this.props.params.id ? "Edit" : "New"
