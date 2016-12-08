@@ -21,8 +21,10 @@ const Procedures = React.createClass({
 
   },
   render() {
-    const list = p => <li key={p._id}>
-      {p.petname + " " + p.date + " " + p.proc}</li>
+    const list = p => <li key={p._id}><Link to={`/procedures/${p._id}/show`}>
+      {p.petname + " " + p.date + " " + p.proc}
+    </Link>
+      </li>
     return (
       <div>
         <h1>Procedures</h1>

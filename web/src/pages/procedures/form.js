@@ -14,6 +14,14 @@ const ProcedureForm = React.createClass({
       resolved: false
     }
   },
+  componentDidMount() {
+    if(this.props.params.id) {
+      data.get("procedures", this.props.params.id)
+        .then(res => {
+          this.setState({procedure: res})
+        })
+    }
+  },
   handleChange(field) {
     return (e) => {
       let procedure = {...this.state.procedure}
@@ -23,14 +31,20 @@ const ProcedureForm = React.createClass({
   },
   handleSubmit(e) {
     e.preventDefault()
+    if (this.state.procedure._id) {
+      data.put('procedures', this.state.procedure._id, this.state.procedure)
+      this.setState({resolved: true})
+    } else {
     data.post('procedures', this.state.procedure)
     this.setState({resolved: true})
+    }
   },
   render() {
+    const titleChange = this.props.params.id ? "Edit" : "New"
     return (
       <div>
-        {this.state.resolved ? <Redirect to='/owners' /> : null}
-        <h1>New Procedure</h1>
+        {this.state.resolved ? <Redirect to='/procedures' /> : null}
+        <h1>{titleChange} Procedure</h1>
         <form onSubmit={this.handleSubmit}>
           <TextField label="Date"
             type="date"

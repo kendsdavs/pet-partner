@@ -30,6 +30,8 @@ const App = React.createClass({
           <Match exactly pattern="/procedures" component={Procedures} />
           <Match pattern="/procedures/new" component={ProcedureForm} />
           <Match pattern="/procedures/:id/show" component={Procedure} />
+          <Match pattern="/procedures/:id/edit" component={ProcedureForm} />
+
 
           <Match exactly pattern="/categories" component={Categories} />
           <Match pattern="/categories/new" component={CategoryForm} />

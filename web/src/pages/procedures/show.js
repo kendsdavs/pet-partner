@@ -17,7 +17,8 @@ const Procedure = React.createClass({
   render() {
     return (
       <div>
-        <h1>{this.state.procedure.name}</h1>
+        <h1>{this.state.procedure.proc}</h1>
+        <Link to={`/procedures/${this.state.procedure._id}/edit`}>Edit Procedure</Link>
       </div>
     )
   }
