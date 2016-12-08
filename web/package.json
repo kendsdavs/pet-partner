@@ -1,0 +1,21 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "ramda": "^0.22.1",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-router": "^4.0.0-alpha.6",
+    "react-scripts": "^0.8.1"
+  }
+}

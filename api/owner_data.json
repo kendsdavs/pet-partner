@@ -8,8 +8,8 @@ Owner
   "phone": "232-594-3332",
   "email": "kends@kends.name",
   "pets": [
-    {"petID": "owner_davis_kends@kends.name_pet_fluffy"},
-    {"pedID":"owner_davis_kends@kends.name_pet_mumu"}
+    "owner_davis_kends@kends.name_pet_fluffy",
+    "owner_davis_kends@kends.name_pet_mumu"
   ]
 },
 {
