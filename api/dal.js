@@ -130,7 +130,7 @@ function listPets(data, cb) {
 /////////Procedures///////////
 function createProcedure(data, cb) {
     let date = new Date().toISOString()
-    data._id = "procedure_" + data.name.replace(/ /g, "_") + "_" + date
+    data._id = "procedure_" + data.proc.replace(/ /g, "_") + "_" + date
     data.type = "procedure"
     db.post(data, function(err, response) {
         if (err) {

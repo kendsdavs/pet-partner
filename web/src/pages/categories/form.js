@@ -34,12 +34,12 @@ const CategoryForm = React.createClass({
     e.preventDefault()
     if(this.state.category._id) {
       data.put("categories", this.state.category._id, this.state.category)
-        this.setState({resolved: true})
+        .then(res => this.setState({resolved: true}) )
 
     } else {
 
       data.post("categories", this.state.category)
-      this.setState({resolved: true})
+      .then(res => this.setState({resolved: true}) )
     }
   },
   render() {

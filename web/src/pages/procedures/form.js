@@ -33,10 +33,10 @@ const ProcedureForm = React.createClass({
     e.preventDefault()
     if (this.state.procedure._id) {
       data.put('procedures', this.state.procedure._id, this.state.procedure)
-      this.setState({resolved: true})
+       .then(res => this.setState({resolved: true}) )
     } else {
     data.post('procedures', this.state.procedure)
-    this.setState({resolved: true})
+       .then(res => this.setState({resolved: true})  )
     }
   },
   render() {

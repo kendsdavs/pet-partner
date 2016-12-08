@@ -43,6 +43,7 @@ const Category = React.createClass({
 
         {this.state.showconfirm ?
           <Confirm
+            msg="Are you sure"
             onCancel={this.handleCancel}
             onConfirm={this.handleConfirm} /> : null }
 
