@@ -26,7 +26,7 @@ module.exports = function () {
 
   const remove = function(model, id, doc) {
     return fetch(`${url}/${model}/${id}`, {
-      method: 'delete',
+      method: 'DELETE',
       body: JSON.stringify(doc),
       headers: {
         'content-type': 'application/json'

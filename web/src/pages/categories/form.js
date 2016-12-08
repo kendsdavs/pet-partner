@@ -25,6 +25,7 @@ const CategoryForm = React.createClass({
       this.setState({category})
     }
   },
+
   handleSubmit(e) {
     e.preventDefault()
     data.post("categories", this.state.category)
