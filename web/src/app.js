@@ -9,6 +9,8 @@ const Pets = require('./pages/pets')
 const Pet = require('./pages/pets/show')
 const PetForm = require('./pages/pets/form')
 const CategoryForm = require('./pages/categories/form')
+const Categories = require('./pages/categories')
+const Category = require('./pages/categories/show')
 
 
 const App = React.createClass({
@@ -28,7 +30,9 @@ const App = React.createClass({
           <Match pattern="/procedures/new" component={ProcedureForm} />
           <Match pattern="/procedures/:id/show" component={Procedure} />
 
-          <Match exactly pattern="/categories/new" component={CategoryForm} />
+          <Match exactly pattern="/categories" component={Categories} />
+          <Match pattern="/categories/new" component={CategoryForm} />
+          <Match pattern="/categories/:id/show" component={Category} />
 
         </div>
       </BrowserRouter>
