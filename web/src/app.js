@@ -33,6 +33,7 @@ const App = React.createClass({
           <Match exactly pattern="/categories" component={Categories} />
           <Match pattern="/categories/new" component={CategoryForm} />
           <Match pattern="/categories/:id/show" component={Category} />
+          <Match pattern="/categories/:id/edit" component={CategoryForm} />
 
         </div>
       </BrowserRouter>

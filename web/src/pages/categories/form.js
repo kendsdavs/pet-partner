@@ -10,6 +10,14 @@ const CategoryForm = React.createClass({
       resolved: false
     }
   },
+  componentDidMount() {
+    if(this.props.params.id) {
+      data.get("categories", this.props.params.id)
+        .then(res => {
+          this.setState({category:res})
+        })
+    }
+  },
   handleChange(field) {
     return (e) => {
       let category = {...this.state.category}
@@ -23,10 +31,11 @@ const CategoryForm = React.createClass({
     this.setState({resolved: true})
   },
   render() {
+    const titleChange = this.props.params.id ? "Edit" : "New"
     return (
       <div>
         {this.state.resolved ? <Redirect to="/categories" /> : null}
-        <h1>Add a Category</h1>
+        <h1>{titleChange} Category</h1>
         <form onSubmit={this.handleSubmit}>
 
           <TextField label="Category Name"
@@ -36,6 +45,8 @@ const CategoryForm = React.createClass({
 
           <div>
             <button>Submit</button>
+            |
+            <Link to="/categories">Back</Link>
 
           </div>
         </form>
