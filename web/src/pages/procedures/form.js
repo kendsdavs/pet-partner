@@ -14,7 +14,8 @@ const ProcedureForm = React.createClass({
             category: {
               _id: "",
               name: ""
-            }
+            },
+            parent_id: this.props.location.query.pet_id
       },
 
       resolved: false
@@ -69,7 +70,7 @@ const ProcedureForm = React.createClass({
     //const petName = this.props.location.query.name ? this.props.location.query.name : null
     return (
       <div>
-        {this.state.resolved ? <Redirect to='/procedures' /> : null}
+        {this.state.resolved ? <Redirect to={`/pets/${this.props.location.query.pet_id}/show`} /> : null}
         <h1>{titleChange} Procedure</h1>
         {/* <h2>{petName}</h2> */}
         <h2>{this.props.location.query.name}</h2>
