@@ -66,10 +66,13 @@ const ProcedureForm = React.createClass({
   },
   render() {
     const titleChange = this.props.params.id ? "Edit" : "New"
+    //const petName = this.props.location.query.name ? this.props.location.query.name : null
     return (
       <div>
         {this.state.resolved ? <Redirect to='/procedures' /> : null}
         <h1>{titleChange} Procedure</h1>
+        {/* <h2>{petName}</h2> */}
+        <h2>{this.props.location.query.name}</h2>
         <form onSubmit={this.handleSubmit}>
           <div>
             <label>Category</label>
@@ -93,6 +96,8 @@ const ProcedureForm = React.createClass({
               type="text"
               value={this.state.procedure.proc}
               onChange={this.handleChange('proc')} />
+
+
 
           <div>
             <button>Submit</button>

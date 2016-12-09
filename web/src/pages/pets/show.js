@@ -6,16 +6,22 @@ const Confirm = require('../../components/confirm')
 
 const Pet = React.createClass({
     getInitialState() {
-        return {pet: {}, removed: false, showconfirm: false, procedures:[]}
+        return {
+            pet: {},
+            removed: false,
+            showconfirm: false,
+            procedures:[]}
     },
     componentDidMount() {
         data.get("pets", this.props.params.id).then(res => this.setState({pet: res}))
         data.list('procedures')
-          .then( procedures => {
-              console.log("procedures are here ", procedures.docs)
-              return procedures
-          })
-          .then(procedures => this.setState({procedures: procedures.docs}))
+            .then(procedures => {
+                console.log("procedures are here ", procedures)
+                return procedures
+            })
+          .then(procedures => procedures = procedures.docs)
+          .then(procedures => procedures.filter(proc => proc.parent_id === this.state.pet._id))
+          .then(procedures => this.setState({procedures: procedures}))
     },
     handleCancel(e) {
         e.preventDefault()
@@ -31,6 +37,12 @@ const Pet = React.createClass({
         this.setState({showconfirm: true})
     },
     render() {
+        const record = procedure =>
+            <tr>
+                <td>{procedure.proc}</td>
+                <td>{procedure.date}</td>
+                <td>{procedure.category.name}</td>
+            </tr>
         return (
             <div>
                 {this.state.removed
@@ -60,14 +72,14 @@ const Pet = React.createClass({
                      </tr>
                    </thead>
                    <tbody>
-                     {/* {this.state.procedures.map(record)} */}
+                     {this.state.procedures.map(record)}
                    </tbody>
 
                  </table>
 
                         <nav>
 
-                            <Link to="/procedures/new">Add Procedure</Link>
+                            <Link to={`/procedures/new?pet_id=${this.state.pet._id}&name=${this.state.pet.name}`}>Add Procedure</Link>
                             |
                             <Link to="/pets">Back to Pets</Link>
                             |
