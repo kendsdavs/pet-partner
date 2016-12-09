@@ -6,11 +6,16 @@ const Confirm = require('../../components/confirm')
 
 const Pet = React.createClass({
     getInitialState() {
-        return {pet: {}, removed: false, showconfirm: false}
+        return {pet: {}, removed: false, showconfirm: false, procedures:[]}
     },
     componentDidMount() {
         data.get("pets", this.props.params.id).then(res => this.setState({pet: res}))
-
+        data.list('procedures')
+          .then( procedures => {
+              console.log("procedures are here ", procedures.docs)
+              return procedures
+          })
+          .then(procedures => this.setState({procedures: procedures.docs}))
     },
     handleCancel(e) {
         e.preventDefault()
@@ -39,6 +44,27 @@ const Pet = React.createClass({
                     ? null
                     : <div>
                         <h1>{this.state.pet.name}</h1>
+                        <main>
+         {/* this.props.location.query.pet_id */}
+         {/* this.props.location.query.name */}
+
+         {/* <Link to={`/procedures/new?pet_id=${this.state.pet.id}&name=${this.state.pet.name}`}>New Procedure</Link> */}
+
+                 <h3>Procedures</h3>
+                 <table>
+                   <thead>
+                     <tr>
+                       <td>Name</td>
+                       <td>Date</td>
+                       <td>Category</td>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     {/* {this.state.procedures.map(record)} */}
+                   </tbody>
+
+                 </table>
+
                         <nav>
 
                             <Link to="/procedures/new">Add Procedure</Link>
@@ -51,6 +77,7 @@ const Pet = React.createClass({
                             |
                             <Link to={`/pets/${this.state.pet._id}/edit`}>Edit Pet</Link>
                         </nav>
+                    </main>
                     </div>
                 }
             </div>
