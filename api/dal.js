@@ -132,6 +132,9 @@ function createProcedure(data, cb) {
     let date = new Date().toISOString()
     data._id = "procedure_" + data.proc.replace(/ /g, "_") + "_" + date
     data.type = "procedure"
+    data.parent_type = "pet"
+    data.parent_id =
+
     db.post(data, function(err, response) {
         if (err) {
             console.log(err)

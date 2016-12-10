@@ -2,6 +2,7 @@
 const React = require('react')
 const {Link, Redirect} = require('react-router')
 const data = require('../../utils/data')()
+const Procedures = require('../procedures')
 const Confirm = require('../../components/confirm')
 
 const Pet = React.createClass({
@@ -37,12 +38,12 @@ const Pet = React.createClass({
         this.setState({showconfirm: true})
     },
     render() {
-        const record = procedure =>
-            <tr>
-                <td>{procedure.proc}</td>
-                <td>{procedure.date}</td>
-                <td>{procedure.category.name}</td>
-            </tr>
+        // const record = procedure =>
+        //     <tr>
+        //         <td>{procedure.proc}</td>
+        //         <td>{procedure.date}</td>
+        //         <td>{procedure.category.name}</td>
+        //     </tr>
         return (
             <div>
                 {this.state.removed
@@ -61,8 +62,8 @@ const Pet = React.createClass({
          {/* this.props.location.query.name */}
 
          {/* <Link to={`/procedures/new?pet_id=${this.state.pet.id}&name=${this.state.pet.name}`}>New Procedure</Link> */}
-
-                 <h3>Procedures</h3>
+         {this.state.pet._id ? <Procedures petID={this.state.pet._id} /> : null}
+                 {/* <h3>Procedures</h3>
                  <table>
                    <thead>
                      <tr>
@@ -75,7 +76,7 @@ const Pet = React.createClass({
                      {this.state.procedures.map(record)}
                    </tbody>
 
-                 </table>
+                 </table> */}
 
                         <nav>
 
@@ -83,9 +84,7 @@ const Pet = React.createClass({
                             |
                             <Link to="/pets">Back to Pets</Link>
                             |
-                            <a href="#" onClick={this.handleRemove}>Remove</a>
-                            |
-                            <Link to="/procedures">View History</Link>
+                            <a href="#" onClick={this.handleRemove}>Remove Pet</a>
                             |
                             <Link to={`/pets/${this.state.pet._id}/edit`}>Edit Pet</Link>
                         </nav>

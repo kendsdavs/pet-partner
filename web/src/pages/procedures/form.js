@@ -102,7 +102,7 @@ const ProcedureForm = React.createClass({
 
           <div>
             <button>Submit</button>
-            <Link to="/pets">Cancel</Link>
+            <Link to={`/pets/${this.props.location.query.pet_id}/show`}>Cancel</Link>
           </div>
 
         </form>
