@@ -23,16 +23,33 @@ const Procedures = React.createClass({
 
   },
   render() {
-    // const list = p => <li key={p._id}><Link to={`/procedures/${p._id}/show`}>
-    //   {p.petname + " " + p.date + " " + p.proc}
-    // </Link>
-    //  </li>
+    const record = procedure =>
+        <tr key={procedure._id}>
+            <td>{procedure.proc}</td>
+            <td>{procedure.date}</td>
+            <td>{procedure.category.name}</td>
+            <td><Link to={`/procedures/${procedure._id}/show?pet_id=${this.props.petID}`}>View</Link></td>
+        </tr>
     return (
       <div>
-        <h1>Procedures</h1>
-          <ul>
-            {this.state.procedures.map(procedure => <li>{procedure.proc}</li>)}
-          </ul>
+        <h3>Procedures</h3>
+        <Link to={`/procedures/new?pet_id=${this.props.petID}`}>Add Procedure</Link>
+
+        {/* <Link to={`/procedures/new?pet_id=${this.state.pet._id}&name=${this.state.pet.name}`}>Add Procedure</Link> */}
+
+          <table>
+            <thead>
+              <tr>
+                <td>Name</td>
+                <td>Date</td>
+                <td>Category</td>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.procedures.map(record)}
+            </tbody>
+
+          </table>
         {/* <Link to="/procedures/new">Add Procedure</Link> */}
 
       </div>

@@ -3,6 +3,8 @@ const React = require('react')
 const {Link, Redirect} = require('react-router')
 const data = require('../../utils/data')()
 const Confirm = require('../../components/confirm')
+const PetCard = require('../pets/card')
+const {set, lensProp} = require('ramda')
 
 const Procedure = React.createClass({
   getInitialState() {
@@ -14,7 +16,14 @@ const Procedure = React.createClass({
   },
   componentDidMount() {
     data.get("procedures", this.props.params.id)
-      .then(res => this.setState({procedure: res}))
+      .then(procedure => data.get('pets', procedure.parent_id)
+        .then(pet => set(lensProp('pet'), pet, procedure))
+      )
+      .then(procedure => {
+        console.log("this is now a procedure", procedure)
+        return procedure
+      })
+      .then(procedure => this.setState({procedure: procedure}))
   },
   handleCancel(e) {
     e.preventDefault()
@@ -36,7 +45,7 @@ const Procedure = React.createClass({
   render() {
     return (
       <div>
-        {this.state.removed ? <Redirect to="/procedures" /> : null}
+        {this.state.removed ? <Redirect to={`/pets/${this.props.location.query.pet_id}/show`} /> : null}
         {this.state.showconfirm ?
           <Confirm
             msg="Are you sure?"
@@ -45,9 +54,14 @@ const Procedure = React.createClass({
 
         {this.state.showconfirm ? null :
           <div>
+
+            {this.state.procedure.pet ? <PetCard pet={this.state.procedure.pet} /> : null}
             <h1>{this.state.procedure.proc}</h1>
+
               <nav>
-              <Link to={`/procedures/${this.state.procedure._id}/edit`}>Edit Procedure</Link>
+                {/* <Link to={`/procedures/${this.state.procedure._id}/edit?parent_id=${this.state.procedure.parent_id}`}>Edit Procedure</Link> */}
+
+              <Link to={`/procedures/${this.state.procedure._id}/edit?parent_id=${this.state.procedure.parent_id}`}>Edit Procedure</Link>
               |
               <a href="#" onClick={this.handleRemove}>Remove</a>
               |

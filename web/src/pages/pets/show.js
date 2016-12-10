@@ -3,6 +3,7 @@ const React = require('react')
 const {Link, Redirect} = require('react-router')
 const data = require('../../utils/data')()
 const Procedures = require('../procedures')
+const PetCard = require('./card')
 const Confirm = require('../../components/confirm')
 
 const Pet = React.createClass({
@@ -38,12 +39,6 @@ const Pet = React.createClass({
         this.setState({showconfirm: true})
     },
     render() {
-        // const record = procedure =>
-        //     <tr>
-        //         <td>{procedure.proc}</td>
-        //         <td>{procedure.date}</td>
-        //         <td>{procedure.category.name}</td>
-        //     </tr>
         return (
             <div>
                 {this.state.removed
@@ -56,31 +51,18 @@ const Pet = React.createClass({
                 {this.state.showconfirm
                     ? null
                     : <div>
-                        <h1>{this.state.pet.name}</h1>
+                        <PetCard pet={this.state.pet} />
+                        
                         <main>
          {/* this.props.location.query.pet_id */}
          {/* this.props.location.query.name */}
 
          {/* <Link to={`/procedures/new?pet_id=${this.state.pet.id}&name=${this.state.pet.name}`}>New Procedure</Link> */}
          {this.state.pet._id ? <Procedures petID={this.state.pet._id} /> : null}
-                 {/* <h3>Procedures</h3>
-                 <table>
-                   <thead>
-                     <tr>
-                       <td>Name</td>
-                       <td>Date</td>
-                       <td>Category</td>
-                     </tr>
-                   </thead>
-                   <tbody>
-                     {this.state.procedures.map(record)}
-                   </tbody>
 
-                 </table> */}
 
                         <nav>
 
-                            <Link to={`/procedures/new?pet_id=${this.state.pet._id}&name=${this.state.pet.name}`}>Add Procedure</Link>
                             |
                             <Link to="/pets">Back to Pets</Link>
                             |

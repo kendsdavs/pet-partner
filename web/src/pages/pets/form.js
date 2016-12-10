@@ -55,6 +55,7 @@ const PetForm = React.createClass({
     },
     render() {
       const formName = this.props.params.id ? "Edit" : "New"
+      const link = this.props.params.id ? `/pets/${this.props.params.id}/show` : "/pets"
         return (
             <div>
                 {this.state.resolved ? <Redirect to='/pets' /> : null}
@@ -78,7 +79,7 @@ const PetForm = React.createClass({
 
                     <div>
                         <button>Submit</button>
-                        <Link to="/pets">Cancel</Link>
+                        <Link to={link}>Cancel</Link>
                     </div>
 
                 </form>
