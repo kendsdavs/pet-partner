@@ -52,18 +52,10 @@ const Pet = React.createClass({
                     ? null
                     : <div>
                         <PetCard pet={this.state.pet} />
-                        
                         <main>
-         {/* this.props.location.query.pet_id */}
-         {/* this.props.location.query.name */}
 
-         {/* <Link to={`/procedures/new?pet_id=${this.state.pet.id}&name=${this.state.pet.name}`}>New Procedure</Link> */}
-         {this.state.pet._id ? <Procedures petID={this.state.pet._id} /> : null}
-
-
+                        {this.state.pet._id ? <Procedures petID={this.state.pet._id} /> : null}
                         <nav>
-
-                            |
                             <Link to="/pets">Back to Pets</Link>
                             |
                             <a href="#" onClick={this.handleRemove}>Remove Pet</a>

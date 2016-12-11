@@ -13,9 +13,15 @@ const PetForm = React.createClass({
                 dob: '',
                 markings: '',
                 owner: '',
-                gender: ''
+                gender: '',
+                address: '',
+                phone: '',
+                file: '',
+                email: ''
+
 
             },
+
             resolved: false
         }
     },
@@ -39,6 +45,18 @@ const PetForm = React.createClass({
             }
             pet[field] = e.target.value
             this.setState({pet})
+        }
+    },
+    handleFile(e) {
+        const pet = {...this.state.pet}
+        const reader = new window.FileReader()
+        reader.addEventListener('load', () => {
+            pet.file = reader.result
+            console.log(pet)
+            this.setState({pet})
+        }, false)
+        if(e.target.files[0]) {
+            reader.readAsDataURL(e.target.files[0])
         }
     },
     handleSubmit(e) {
@@ -75,8 +93,18 @@ const PetForm = React.createClass({
 
                     <TextField label="Breeder" type="text" value={this.state.pet.breeder} onChange={this.handleChange('breeder')}/>
 
-                    <TextField label="Owner" type="text" value={this.state.pet.owner} onChange={this.handleChange('owner')}/>
+                    <TextField label="Owner Name" type="text" value={this.state.pet.owner} onChange={this.handleChange('owner')}/>
 
+                    <TextField label="Address" type="text" value={this.state.pet.address} onChange={this.handleChange('address')}/>
+
+                    <TextField label="Phone" type="text" value={this.state.pet.phone} onChange={this.handleChange('phone')}/>
+
+                    <TextField label="Email" type="email" value={this.state.pet.email} onChange={this.handleChange('email')}/>
+
+                    <input type="file" onChange={this.handleFile} />
+                    <div>
+                       <img src={this.state.pet.file} style={{height: '200px'}} />
+                     </div>
                     <div>
                         <button>Submit</button>
                         <Link to={link}>Cancel</Link>

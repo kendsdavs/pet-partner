@@ -16,10 +16,6 @@ const Pets = React.createClass({
     data.list("pets")
       .then(pets => this.setState({filtered: pets.docs, pets: pets.docs})
       )
-      // .then(pets => {
-      //   console.log("here are the pets", pets.docs)
-      //   return pets
-      // })
   },
   filter(e) {
     this.setState({filtered:
