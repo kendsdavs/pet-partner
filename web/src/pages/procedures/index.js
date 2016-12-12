@@ -17,10 +17,11 @@ const Procedures = React.createClass({
         console.log("these are the results of mount", procedures)
         return procedures
       })
-      .then(procedures => procedures = procedures.docs)
+
       .then(filter(propEq('parent_id', this.props.petID)))
       .then(procedures => {
         this.setState({procedures: procedures})
+  // .then(procedures => procedures = procedures.doc)
       })
 
   },

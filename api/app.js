@@ -167,7 +167,7 @@ app.get('/procedures/:id', function(req, res, next) {
     })
 })
 app.get('/procedures', function(req, res, next) {
-    dal.listPets("procedure", function(err, result) {
+    dal.listProcedures(function(err, result) {
         if (err) {
             var responseError = BuildResponseError(err)
             return next(new HTTPError(responseError.status, responseError.message))

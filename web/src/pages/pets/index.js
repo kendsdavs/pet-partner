@@ -37,7 +37,7 @@ const Pets = React.createClass({
       <div>
         <PetPartnerNav />
         <div className="tc">
-        <h1>Pets</h1>
+        <h1>Search for a Pet</h1>
           <input
             onChange={this.filter}
             placeholder="search" type="text"></input>

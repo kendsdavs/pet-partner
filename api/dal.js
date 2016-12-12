@@ -4,6 +4,7 @@ PouchDB.plugin(require('pouchdb-mapreduce'))
 PouchDB.plugin(require('pouchdb-find'))
 PouchDB.debug.enable('pouchdb:find')
 const fetchConfig = require('zero-config')
+const {pluck} = require('ramda')
 
 var config = fetchConfig(path.join(__dirname, '..'), {dcValue: 'test'})
 const urlFormat = require('url').format
@@ -26,8 +27,7 @@ var dal = {
     listCategories,
     getCategory,
     updateCategory,
-    deleteCategory,
-
+    deleteCategory
 }
 /////Helper Functions///////
 function getDocByID(id, callback) {
@@ -133,9 +133,7 @@ function createProcedure(data, cb) {
     data._id = "procedure_" + data.proc.replace(/ /g, "_") + "_" + date
     data.type = "procedure"
     data.parent_type = "pet"
-    data.parent_id =
-
-    db.post(data, function(err, response) {
+    data.parent_id = db.post(data, function(err, response) {
         if (err) {
             console.log(err)
             return cb(err)
@@ -146,19 +144,47 @@ function createProcedure(data, cb) {
 }
 
 function getProcedure(data, cb) {
-  getDocByID(data,cb)
+    getDocByID(data, cb)
 }
 
 function updateProcedure(data, cb) {
-  updateDoc(data,cb)
+    updateDoc(data, cb)
 }
 
 function deleteProcedure(data, cb) {
-  deleteDoc(data,cb)
+    deleteDoc(data, cb)
 }
-function listProcedures(data, cb) {
-  listDocsByType(data,cb)
+// function listProcedures(data, cb) {
+//   listDocsByType(data,cb)
+// }
+// function listProcedures(cb) {
+//   db.find({
+//       selector: {
+//           type: {
+//               $eq: 'procedure'
+//           }
+//       },
+//       sort: [{"date": "asc"}]
+//   }).then(function(result) {
+//       console.log("results: ", result)
+//       return cb(null, result)
+//   }).catch(function(err) {
+//       console.log("err: ", err)
+//       return cb(err)
+//   })
+// }
+function listProcedures(cb) {
+    console.log("list procdures")
+    db.query('testDate', {include_docs: true})
+      .then(function(result) {
+        console.log("results: ", result.rows)
+        return cb(null, pluck('doc',result.rows))
+    }).catch(function(err) {
+        console.log("err: ", err)
+        return cb(err)
+    })
 }
+
 
 //////Categories////////
 function createCategory(data, cb) {
@@ -174,18 +200,18 @@ function createCategory(data, cb) {
     })
 }
 function getCategory(data, cb) {
-  getDocByID(data,cb)
+    getDocByID(data, cb)
 }
 
 function updateCategory(data, cb) {
-  updateDoc(data,cb)
+    updateDoc(data, cb)
 }
 
 function deleteCategory(data, cb) {
-  deleteDoc(data,cb)
+    deleteDoc(data, cb)
 }
 function listCategories(data, cb) {
-  listDocsByType(data,cb)
+    listDocsByType(data, cb)
 }
 
 module.exports = dal

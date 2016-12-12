@@ -23,7 +23,7 @@ const Pet = React.createClass({
                 console.log("procedures are here ", procedures)
                 return procedures
             })
-          .then(procedures => procedures = procedures.docs)
+          //.then(procedures => procedures = procedures.docs)
           .then(procedures => procedures.filter(proc => proc.parent_id === this.state.pet._id))
           .then(procedures => this.setState({procedures: procedures}))
     },

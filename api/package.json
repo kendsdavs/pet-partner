@@ -17,6 +17,7 @@
     "pouchdb-find": "^0.10.4",
     "pouchdb-http": "^6.0.2",
     "pouchdb-mapreduce": "^6.0.7",
+    "ramda": "^0.22.1",
     "zero-config": "^7.0.2"
   }
 }
