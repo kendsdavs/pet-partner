@@ -6,6 +6,8 @@ const Procedures = require('../procedures')
 const PetCard = require('./card')
 const Confirm = require('../../components/confirm')
 const PetPartnerNav = require('../../components/navbar')
+import { Grid, Row, Col} from 'react-bootstrap'
+
 
 const Pet = React.createClass({
     getInitialState() {

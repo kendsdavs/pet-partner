@@ -8,7 +8,12 @@ const PetCard = React.createClass({
 
       <Grid>
         <Row>
-          <Col md={8} mdOffset={2} >
+          {/* <Col md={8} mdOffset={4} > */}
+          <Col md={2} className="pull-left">
+            <h1>Left Side</h1>
+          </Col>
+          {/* <Col md={6} Offset={1} className="pull-right" > */}
+          <Col md={8} className="db center">
             <Well>
 
                 <Row>
@@ -28,15 +33,11 @@ const PetCard = React.createClass({
                      />
                   </Col>
                 </Row>
-                <Row>
-
-                  <Col md={12}>
-
-
-                  </Col>
-                </Row>
 
             </Well>
+          </Col>
+          <Col md={2} Offset={1} className="pull-right">
+            <h1>Right Side</h1>
           </Col>
         </Row>
       </Grid>

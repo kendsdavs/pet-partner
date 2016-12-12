@@ -33,14 +33,18 @@ const Procedures = React.createClass({
             <td>{procedure.category.name}</td>
         </tr>
     return (
-      <div className="container">
+      <div>
         <Grid>
                 <Row>
-                    <Col xs={6} md={8}>
+                    <Col xs={6} md={4} mdOffset={5}>
                       <h3>Procedures</h3>
                     </Col>
-                    <Col xs={6} md={2} mdOffset={2}>
-                      <Button><Link to={`/procedures/new?parent_id=${this.props.petID}&pet_id=${this.props.petID}`}>Add Procedure</Link></Button>
+                    <Col md={3} >
+                      <Button>
+                        <Link to={`/procedures/new?parent_id=${this.props.petID}&pet_id=${this.props.petID}`}>
+                          Add Procedure
+                        </Link>
+                      </Button>
                     </Col>
                   </Row>
             </Grid>
@@ -50,7 +54,10 @@ const Procedures = React.createClass({
         </Button> */}
 
         {/* <Link to={`/procedures/new?pet_id=${this.state.pet._id}&name=${this.state.pet.name}`}>Add Procedure</Link> */}
-
+        <div className="container">
+          <Row>
+            <Col md={8} mdOffset={2}>
+              {/* className="pull-right" */}
           <Table striped bordered condensed hover>
             <thead>
               <tr>
@@ -64,6 +71,9 @@ const Procedures = React.createClass({
             </tbody>
 
           </Table>
+          </Col>
+          </Row>
+          </div>
         {/* <Link to="/procedures/new">Add Procedure</Link> */}
 
       </div>
