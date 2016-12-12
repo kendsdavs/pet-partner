@@ -15,7 +15,7 @@ const ProcedureForm = React.createClass({
               _id: "",
               name: ""
             },
-            parent_id: this.props.location.query.pet_id ? this.props.location.query.pet_id :
+            parent_id: this.props.location.query.parent_id ? this.props.location.query.parent_id :
               this.props.params
 
       },
@@ -32,7 +32,7 @@ const ProcedureForm = React.createClass({
     // if(this.props.location.query.pet_id)
     //   data.get("pets", this.props.location.query.pet_id)
     //     .then()
-    data.get("pets", this.props.location.query.pet_id)
+    data.get("pets", this.props.location.query.parent_id)
       .then(res =>this.setState({pet: res}))
     if(this.props.params.id) {
       data.get("procedures", this.props.params.id)
@@ -79,7 +79,7 @@ const ProcedureForm = React.createClass({
     //const petName = this.props.location.query.name ? this.props.location.query.name : null
     return (
       <div>
-        {this.state.resolved ? <Redirect to={`/pets/${this.props.location.query.pet_id}/show`} /> : null}
+        {this.state.resolved ? <Redirect to={`/pets/${this.props.location.query.parent_id}/show`} /> : null}
         <h1>{titleChange} Procedure</h1>
         {/* <h2>{petName}</h2> */}
         <h2>{this.props.location.query.name}</h2>
@@ -112,7 +112,7 @@ const ProcedureForm = React.createClass({
 
           <div>
             <button>Submit</button>
-            <Link to={`/pets/${this.props.location.query.pet_id}/show`}>Cancel</Link>
+            <Link to={`/pets/${this.props.location.query.parent_id}/show`}>Cancel</Link>
           </div>
 
         </form>

@@ -5,6 +5,8 @@ const data = require('../../utils/data')()
 const Procedures = require('../procedures')
 const PetCard = require('./card')
 const Confirm = require('../../components/confirm')
+const PetPartnerNav = require('../../components/navbar')
+
 
 const Pet = React.createClass({
     getInitialState() {
@@ -41,6 +43,7 @@ const Pet = React.createClass({
     render() {
         return (
             <div>
+                <PetPartnerNav />
                 {this.state.removed
                     ? <Redirect to="/pets"/>
                     : null}
@@ -51,7 +54,9 @@ const Pet = React.createClass({
                 {this.state.showconfirm
                     ? null
                     : <div>
-                        <PetCard pet={this.state.pet} />
+                        <div className="container">
+                            <PetCard pet={this.state.pet} />
+                        </div>
                         <main>
 
                         {this.state.pet._id ? <Procedures petID={this.state.pet._id} /> : null}

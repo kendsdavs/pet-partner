@@ -2,6 +2,8 @@ const React = require('react')
 const {Link} = require('react-router')
 const data = require('../../utils/data')()
 const {filter} = require('ramda')
+const PetPartnerNav = require('../../components/navbar')
+
 
 const Pets = React.createClass({
   getInitialState() {
@@ -27,23 +29,25 @@ const Pets = React.createClass({
   },
   render() {
     const list = pet => <li key={pet._id}>
-      <Link to={`/pets/${pet._id}/show`}>
-      {pet.name}
-    </Link>
-
+        <Link to={`/pets/${pet._id}/show`}>
+          {pet.name}
+        </Link>
       </li>
     return (
       <div>
+        <PetPartnerNav />
+        <div className="tc">
         <h1>Pets</h1>
           <input
             onChange={this.filter}
             placeholder="search" type="text"></input>
-        <ul>
+        <ul className="list">
           {this.state.filtered.map(list)}
         </ul>
         <Link to="/pets/new">Add Pet</Link>
         ||
         <Link to="/">Home</Link>
+      </div>
       </div>
     )
   }

@@ -5,6 +5,8 @@ const data = require('../../utils/data')()
 const Confirm = require('../../components/confirm')
 const PetCard = require('../pets/card')
 const {set, lensProp} = require('ramda')
+const PetPartnerNav = require('../../components/navbar')
+
 
 const Procedure = React.createClass({
   getInitialState() {
@@ -45,7 +47,8 @@ const Procedure = React.createClass({
   render() {
     return (
       <div>
-        {this.state.removed ? <Redirect to={`/pets/${this.props.location.query.pet_id}/show`} /> : null}
+        <PetPartnerNav />
+        {this.state.removed ? <Redirect to={`/pets/${this.props.location.query.parent_id}/show`} /> : null}
         {this.state.showconfirm ?
           <Confirm
             msg="Are you sure?"
@@ -53,9 +56,11 @@ const Procedure = React.createClass({
             onConfirm={this.handleConfirm} /> : null }
 
         {this.state.showconfirm ? null :
+
           <div>
 
             {this.state.procedure.pet ? <PetCard pet={this.state.procedure.pet} /> : null}
+            <div className="container tc">
             <h1>{this.state.procedure.proc}</h1>
 
               <nav>
@@ -65,8 +70,9 @@ const Procedure = React.createClass({
               |
               <a href="#" onClick={this.handleRemove}>Remove</a>
               |
-              <Link to="/procedures">Back to Procedures</Link>
+              <Link to={`/pets/${this.props.location.query.parent_id}/show`}>Back to {this.state.procedure.petname} </Link>
               </nav>
+            </div>
            </div>
            }
       </div>

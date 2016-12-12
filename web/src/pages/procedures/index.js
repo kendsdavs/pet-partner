@@ -2,6 +2,8 @@ const React = require('react')
 const { Link } = require('react-router')
 const data = require('../../utils/data')()
 const { filter, propEq} = require('ramda')
+import { Table, Button, Grid, Row, Col } from 'react-bootstrap';
+
 
 const Procedures = React.createClass({
   getInitialState() {
@@ -25,19 +27,30 @@ const Procedures = React.createClass({
   render() {
     const record = procedure =>
         <tr key={procedure._id}>
-            <td>{procedure.proc}</td>
+            <td><Link to={`/procedures/${procedure._id}/show?parent_id=${this.props.petID}`}>{procedure.proc}</Link></td>
             <td>{procedure.date}</td>
             <td>{procedure.category.name}</td>
-            <td><Link to={`/procedures/${procedure._id}/show?pet_id=${this.props.petID}`}>View</Link></td>
         </tr>
     return (
-      <div>
-        <h3>Procedures</h3>
-        <Link to={`/procedures/new?pet_id=${this.props.petID}`}>Add Procedure</Link>
+      <div className="container">
+        <Grid>
+                <Row>
+                    <Col xs={6} md={8}>
+                      <h3>Procedures</h3>
+                    </Col>
+                    <Col xs={6} md={2} mdOffset={2}>
+                      <Button><Link to={`/procedures/new?parent_id=${this.props.petID}&pet_id=${this.props.petID}`}>Add Procedure</Link></Button>
+                    </Col>
+                  </Row>
+            </Grid>
+
+        {/* <Button pullRight>
+          <Link to={`/procedures/new?pet_id=${this.props.petID}`}>Add Procedure</Link>
+        </Button> */}
 
         {/* <Link to={`/procedures/new?pet_id=${this.state.pet._id}&name=${this.state.pet.name}`}>Add Procedure</Link> */}
 
-          <table>
+          <Table striped bordered condensed hover>
             <thead>
               <tr>
                 <td>Name</td>
@@ -49,7 +62,7 @@ const Procedures = React.createClass({
               {this.state.procedures.map(record)}
             </tbody>
 
-          </table>
+          </Table>
         {/* <Link to="/procedures/new">Add Procedure</Link> */}
 
       </div>
