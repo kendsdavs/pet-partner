@@ -6,7 +6,7 @@ const Procedures = require('../procedures')
 const PetCard = require('./card')
 const Confirm = require('../../components/confirm')
 const PetPartnerNav = require('../../components/navbar')
-import {Grid, Row, Col} from 'react-bootstrap'
+import {Grid, Row, Col,NavDropdown, MenuItem } from 'react-bootstrap'
 
 const Pet = React.createClass({
     getInitialState() {
@@ -52,6 +52,11 @@ const Pet = React.createClass({
                             {/* <Col md={8} mdOffset={4} > */}
                             <Col md={2} className="pull-left">
                                 <h1>Left Side</h1>
+                                <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
+                                    <MenuItem eventKey={3.1}>Action</MenuItem>
+                                    <MenuItem eventKey={3.2}>Another action</MenuItem>
+                                    <MenuItem eventKey={3.3}>Something else here</MenuItem>
+                                </NavDropdown>
                             </Col>
                             <Col md={5}>
 
