@@ -52,11 +52,14 @@ const Pet = React.createClass({
                             {/* <Col md={8} mdOffset={4} > */}
                             <Col md={2} className="pull-left">
                                 <h1>Left Side</h1>
-                                <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                                    <MenuItem eventKey={3.1}>Action</MenuItem>
-                                    <MenuItem eventKey={3.2}>Another action</MenuItem>
-                                    <MenuItem eventKey={3.3}>Something else here</MenuItem>
-                                </NavDropdown>
+                                
+                                {/* <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
+                                    {this.state.pet.injections ?
+                                    this.state.pet.injections.map(i =>
+                                        <MenuItem eventKey={this.state.pet.injections._id}>{this.state.pet.injections.name}</MenuItem>
+                                    ) : null }
+
+                                </NavDropdown> */}
                             </Col>
                             <Col md={5}>
 

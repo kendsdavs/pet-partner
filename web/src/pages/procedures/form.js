@@ -2,7 +2,20 @@ const React = require('react')
 const {Link, Redirect} = require('react-router')
 const data = require('../../utils/data')() //it is a factory function that runs the data factory so we need to call it here.
 const TextField = require('../../components/text-field')
-const {Tab, Tabs, FormGroup, Checkbox, Button, ControlLabel, Grid, Row, Col, Form} = require('react-bootstrap')
+const {
+    Tab,
+    Tabs,
+    FormGroup,
+    FieldGroup,
+    Checkbox,
+    Button,
+    ControlLabel,
+    Grid,
+    Row,
+    Col,
+    Form,
+    FormControl
+} = require('react-bootstrap')
 const PetCard = require('../pets/card')
 const VaccineForm = require('./vaccine-form')
 
@@ -30,23 +43,23 @@ const ProcedureForm = React.createClass({
             key: 1,
             vacUpdate: false,
             vaccines: [
-              {
-              name: "Lyme Disease",
-              _id: 1
-              },
-              {
-              name: "Distemper",
-              _id: 2
-            },{
-              name: "Adenovirus 2",
-              _id: 3
-            },{
-              name: "Parvovirus",
-              _id: 4
-            },{
-              name: "Leptospira",
-              _id: 5
-            }]
+                {
+                    name: "Lyme Disease",
+                    _id: 1
+                }, {
+                    name: "Distemper",
+                    _id: 2
+                }, {
+                    name: "Adenovirus 2",
+                    _id: 3
+                }, {
+                    name: "Parvovirus",
+                    _id: 4
+                }, {
+                    name: "Leptospira",
+                    _id: 5
+                }
+            ]
         }
     },
     componentDidMount() {
@@ -65,23 +78,27 @@ const ProcedureForm = React.createClass({
         }
     },
     addVac(vaccine) {
-        return(e) => {
-          let injections = this.state.pet.injections.filter(injection =>
-            injection._id !== vaccine._id)
-          let pet = {...this.state.pet}
-          pet.injections = [vaccine, ...injections]
-          console.log("pet injections", pet.injections)
-          this.setState({pet})
+        return (e) => {
+            let injections = this.state.pet.injections.filter(injection => injection._id !== vaccine._id)
+            let pet = {
+                ...this.state.pet
+            }
+            pet.injections = [
+                vaccine, ...injections
+            ]
+            console.log("pet injections", pet.injections)
+            this.setState({pet})
         }
-      },
+    },
     removeInjection(i) {
-      return (e) => {
-        let injections = this.state.pet.injections.filter(inject =>
-          inject._id !== i._id)
-        let pet = {...this.state.pet}
-        pet.injections = injections
-        this.setState({injections})
-      }
+        return (e) => {
+            let injections = this.state.pet.injections.filter(inject => inject._id !== i._id)
+            let pet = {
+                ...this.state.pet
+            }
+            pet.injections = injections
+            this.setState({pet})
+        }
     },
     handleChange(field) {
         return (e) => {
@@ -119,15 +136,14 @@ const ProcedureForm = React.createClass({
             data.post('procedures', this.state.procedure).then(res => this.setState({resolved: true}))
         }
     },
-    updateVacRecord (e) {
+    updateVacRecord(e) {
         e.preventDefault()
-        console.log("this.state.pet", this.state.pet )
-        data.put('pets',this.state.pet._id, this.state.pet)
-          .then(res => {
+        console.log("this.state.pet", this.state.pet)
+        data.put('pets', this.state.pet._id, this.state.pet).then(res => {
             console.log("the pet record has been updated", res)
             return res
         }).then(res => this.setState({vacUpdate: true}))
-      },
+    },
     render() {
         const titleChange = this.props.params.id
             ? "Edit"
@@ -137,78 +153,90 @@ const ProcedureForm = React.createClass({
             : this.state.pet.name
         //const petName = this.props.location.query.name ? this.props.location.query.name : null
         return (
-            <div className="container">
+            <div>
                 {this.state.resolved || this.state.vacUpdate
                     ? <Redirect to={`/pets/${this.props.location.query.parent_id}/show`}/>
                     : null}
                 <Tabs activeKey={this.state.key} onSelect={this.handleTab} id="controlled-tab-example">
                     <Tab eventKey={1} title="Health Check">
-                        <h1>{titleChange}
-                            Procedure</h1>
-                        {/* <h2>{petName}</h2> */}
-                        <h2>{this.props.location.query.name}</h2>
-                        <form onSubmit={this.handleSubmit}>
-                            <div>
-                                <label>Category</label>
-                                <select value={this.state.procedure.category._id} onChange={this.handleSelect}>
-                                    <option value='-1'>Select</option>
-                                    {this.state.categories.map(cat => <option key={cat._id} value={cat._id}>{cat.name}</option>)}
-                                </select>
-                            </div>
-                            <TextField label="Date" type="date" value={this.state.procedure.date} onChange={this.handleChange('date')}/>
-                            <h3>{this.state.pet.name}</h3>
-
-                            <TextField label="Pet Name" type="text" value={nameChange} onChange={this.handleChange('petname')}/>
-
-                            <TextField label="Procedure" type="text" value={this.state.procedure.proc} onChange={this.handleChange('proc')}/>
-
-                            <div>
-                                <button>Submit</button>
-                                <Link to={`/pets/${this.props.location.query.parent_id}/show`}>Cancel</Link>
+                        <div className="container">
+                            <div className="page-header">
+                                <h1 className="col-sm-offset-1">{titleChange}
+                                    Procedure</h1>
                             </div>
 
-                        </form>
-                    </Tab>
-                    <Tab eventKey={2} title="Pet Info"> <PetCard pet={this.state.pet}/> </Tab>
-                    {/* <Tab eventKey={3} title="Vaccines"> <VaccineForm /> </Tab> */}
-                    <Tab eventKey={3} title="Vaccines">
-                        <div>
-                          <div>
-                            <h2>Add Vaccine to Medical History</h2>
-                             {this.state.vaccines.map(v =>
-                               <article className="mw5 dib bg-white br3 pa3 pa4-ns ma3 ba b--black-10">
-                                <div className="tc">
-                                  <img src="http://tachyons.io/img/avatar_1.jpg" className="br-100 h4 w4 dib ba b--black-05 pa2" title="Kitty staring at you" />
-                                  <h1 className="f3 mb2">{v.name}</h1>
+                            {/* <h2>{petName}</h2> */}
+                            <h2>{this.props.location.query.name}</h2>
+                            <form className="form-inline" onSubmit={this.handleSubmit}>
+                                <h3>{this.state.pet.name}</h3>
 
-                                  <button onClick={this.addVac(v)}>Add</button>
+                                <FormGroup controlId="formControlsSelect">
+                                    <ControlLabel className="col-sm-10">Select</ControlLabel>
+                                    <div className="col-sm-10">
+                                        <FormControl componentClass="select" placeholder="select" value={this.state.procedure.category._id} onChange={this.handleSelect}>
+                                            <option value="-1">select</option>
+                                            {this.state.categories.map(cat => <option key={cat._id} value={cat._id}>{cat.name}</option>)}
+                                        </FormControl>
+                                    </div>
+                                </FormGroup>
+
+                                <TextField label="Date" type="date" value={this.state.procedure.date} onChange={this.handleChange('date')}/>
+
+                                <TextField label="Pet Name" type="text" value={nameChange} onChange={this.handleChange('petname')}/>
+
+                                <TextField label="Procedure" type="text" value={this.state.procedure.proc} onChange={this.handleChange('proc')}/>
+
+                                <div className="form-group">
+                                    <div className="col-sm-10">
+                                        <button type="submit" className="btn btn-default">Submit</button>
+                                        <Link to={`/pets/${this.props.location.query.parent_id}/show`}>Cancel</Link>
+                                    </div>
                                 </div>
-                              </article>
-                             )}
-                          </div>
-                          <div>
-                            <h3>Vaccine History</h3>
-                            <ul>
-                              {this.state.pet.injections.map(i =>
-                                <li key={i._id}>
-                                  <h1>{i.name}</h1>
-                                  <button onClick={this.removeInjection(i)}>Remove</button>
-                                </li>
-                              )}
-                            </ul>
-                          </div>
-                          <div>
-                                <hr />
-                                <button onClick={this.updateVacRecord}>Update Record</button>
-                              </div>
-                          </div>
+                            </form>
+                        </div>
+                            </Tab>
+                            <Tab eventKey={2} title="Pet Info">
+                                <PetCard pet={this.state.pet}/>
+                            </Tab>
+                            {/* <Tab eventKey={3} title="Vaccines"> <VaccineForm /> </Tab> */}
+                            <Tab eventKey={3} title="Vaccines">
+                                <div className="container">
+                                    <div>
+                                        <h2>Add Vaccine to Medical History</h2>
+                                        {this.state.vaccines.map(v => <article className="mw5 dib bg-white br3 pa3 pa4-ns ma3 ba b--black-10">
+                                            <div className="tc">
+                                                <img src="http://tachyons.io/img/avatar_1.jpg" className="br-100 h4 w4 dib ba b--black-05 pa2" title="Kitty staring at you"/>
+                                                <h1 className="f3 mb2">{v.name}</h1>
 
-                    </Tab>
+                                                <button onClick={this.addVac(v)}>Add</button>
+                                            </div>
+                                        </article>)}
+                                    </div>
+                                    <div>
+                                        <h3>Vaccine History</h3>
 
+                                            {this.state.pet.injections.map(i =>
+                                                <div>
+                                                    <h3>{i.name}</h3>
+                                                    <button className="btn btn-danger"
+                                                        onClick={this.removeInjection(i)}>Remove</button>
+                                                </div>
 
-                </Tabs>
-            </div>
-        )
-    }
+                                            )}
+
+                                    </div>
+                                    <div>
+                                        <hr/>
+                                        <button onClick={this.updateVacRecord}>Update Record</button>
+                                    </div>
+                                </div>
+
+                            </Tab>
+
+                        </Tabs>
+
+                    </div>
+)
+}
 })
 module.exports = ProcedureForm
