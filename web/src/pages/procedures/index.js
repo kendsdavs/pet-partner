@@ -17,11 +17,11 @@ const Procedures = React.createClass({
         console.log("these are the results of mount", procedures)
         return procedures
       })
-
+      // .then(procedures => procedures = procedures.doc)
       .then(filter(propEq('parent_id', this.props.petID)))
       .then(procedures => {
         this.setState({procedures: procedures})
-  // .then(procedures => procedures = procedures.doc)
+
       })
 
   },
@@ -36,7 +36,7 @@ const Procedures = React.createClass({
       <div>
         <Grid>
                 <Row>
-                    <Col xs={6} md={4} mdOffset={5}>
+                    <Col xs={6} md={3} mdOffset={5}>
                       <h3>Procedures</h3>
                     </Col>
                     <Col md={3} >

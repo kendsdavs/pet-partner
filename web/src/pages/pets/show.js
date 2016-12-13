@@ -6,8 +6,7 @@ const Procedures = require('../procedures')
 const PetCard = require('./card')
 const Confirm = require('../../components/confirm')
 const PetPartnerNav = require('../../components/navbar')
-import { Grid, Row, Col} from 'react-bootstrap'
-
+import {Grid, Row, Col} from 'react-bootstrap'
 
 const Pet = React.createClass({
     getInitialState() {
@@ -47,26 +46,40 @@ const Pet = React.createClass({
 
                 {this.state.showconfirm
                     ? null
-                    : <div>
-                        <div className="container">
-                            <PetCard pet={this.state.pet}/>
-                        </div>
-                        
-                        <main>
+                    : <div className="container">
 
-                            {this.state.pet._id
-                                ? <Procedures petID={this.state.pet._id}/>
-                                : null}
-                            <nav>
-                                <Link to="/pets">Back to Pets</Link>
-                                |
-                                <a href="#" onClick={this.handleRemove}>Remove Pet</a>
-                                |
-                                <Link to={`/pets/${this.state.pet._id}/edit`}>Edit Pet</Link>
-                            </nav>
-                        </main>
-                    </div>
-}
+                        <Row>
+                            {/* <Col md={8} mdOffset={4} > */}
+                            <Col md={2} className="pull-left">
+                                <h1>Left Side</h1>
+                            </Col>
+                            <Col md={5}>
+
+                                    <PetCard pet={this.state.pet}/>
+
+                                {/* <div className="container">
+                                    <PetCard pet={this.state.pet}/>
+                                </div> */}
+                            </Col>
+                            <Col md={2} className="pull-right">
+                                <h1>Right Side</h1>
+                            </Col>
+                        </Row>
+
+                            <main>
+
+                                {this.state.pet._id
+                                    ? <Procedures petID={this.state.pet._id}/>
+                                    : null}
+                                <nav>
+                                    <Link to="/pets">Back to Pets</Link>
+                                    |
+                                    <a href="#" onClick={this.handleRemove}>Remove Pet</a>
+                                    |
+                                    <Link to={`/pets/${this.state.pet._id}/edit`}>Edit Pet</Link>
+                                </nav>
+                            </main>
+                        </div>}
             </div>
 
         )

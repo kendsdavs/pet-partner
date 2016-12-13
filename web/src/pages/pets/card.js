@@ -1,5 +1,5 @@
 const React = require('react')
-import { Grid, Row, Col, Image, Well, Panel} from 'react-bootstrap'
+import { Grid, Row, Col, Image, Well} from 'react-bootstrap'
 
 
 const PetCard = React.createClass({
@@ -7,13 +7,12 @@ const PetCard = React.createClass({
     return (
 
       <Grid>
-        <Row>
-          {/* <Col md={8} mdOffset={4} > */}
-          <Col md={2} className="pull-left">
+        {/* <Row>
+          {/* <Col md={2} className="pull-left">
             <h1>Left Side</h1>
-          </Col>
+          </Col> */}
           {/* <Col md={6} Offset={1} className="pull-right" > */}
-          <Col md={8} className="db center">
+          <Col md={7} className="db center">
             <Well>
 
                 <Row>
@@ -30,16 +29,14 @@ const PetCard = React.createClass({
                       width="150"
                       rounded responsive
                       className="pull-right"
+                      
                      />
                   </Col>
                 </Row>
 
             </Well>
           </Col>
-          <Col md={2} Offset={1} className="pull-right">
-            <h1>Right Side</h1>
-          </Col>
-        </Row>
+        {/* </Row> */}
       </Grid>
 
 
