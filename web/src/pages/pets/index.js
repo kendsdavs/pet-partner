@@ -3,6 +3,7 @@ const {Link} = require('react-router')
 const data = require('../../utils/data')()
 const {filter} = require('ramda')
 const PetPartnerNav = require('../../components/navbar')
+const {ListGroup, ListGroupItem, Row, Col, FormGroup, ControlLabel, FormControl, HelpBlock } = require('react-bootstrap')
 
 
 const Pets = React.createClass({
@@ -28,22 +29,33 @@ const Pets = React.createClass({
     })
   },
   render() {
-    const list = pet => <li key={pet._id}>
-        <Link to={`/pets/${pet._id}/show`}>
+    const list = pet =>
+        <ListGroupItem key={pet._id}><Link to={`/pets/${pet._id}/show`}>
           {pet.name}
-        </Link>
-      </li>
+        </Link></ListGroupItem>
+
     return (
       <div>
         <PetPartnerNav />
-        <div className="tc">
-        <h1>Search for a Pet</h1>
+        <Row><Col xs={6} xsOffset={3}>
+        <form>
+          <FormGroup controlId="formValidationSuccess1" validationState="success">
+            <ControlLabel>Search for a Pet</ControlLabel>
+              <FormControl onChange={this.filter} type="text" placeholder="search"/>
+            <HelpBlock>Narrow your search by typing the name you're looking for.</HelpBlock>
+          </FormGroup>
+        </form>
+        </Col></Row>
+        <div className="tc container">
+        {/* <h1>Search for a Pet</h1>
           <input
             onChange={this.filter}
-            placeholder="search" type="text"></input>
-        <ul className="list">
-          {this.state.filtered.map(list)}
-        </ul>
+            placeholder="search" type="text"></input> */}
+            <Row><Col xs={6} xsOffset={3}>
+              <ListGroup>
+                {this.state.filtered.map(list)}
+              </ListGroup>
+            </Col></Row>
         <Link to="/pets/new">Add Pet</Link>
         ||
         <Link to="/">Home</Link>
