@@ -14,7 +14,8 @@ const {
     Row,
     Col,
     Form,
-    FormControl
+    FormControl,
+    Panel
 } = require('react-bootstrap')
 const PetCard = require('../pets/card')
 const VaccineForm = require('./vaccine-form')
@@ -201,6 +202,7 @@ const ProcedureForm = React.createClass({
                             {/* <Tab eventKey={3} title="Vaccines"> <VaccineForm /> </Tab> */}
                             <Tab eventKey={3} title="Vaccines">
                                 <div className="container">
+                                    <main className="mw8 center">
                                     <div>
                                         <h2>Add Vaccine to Medical History</h2>
                                         {this.state.vaccines.map(v => <article className="mw5 dib bg-white br3 pa3 pa4-ns ma3 ba b--black-10">
@@ -212,18 +214,27 @@ const ProcedureForm = React.createClass({
                                             </div>
                                         </article>)}
                                     </div>
+                                    </main>
                                     <div>
+                                      <main className="col-sm-8 col-sm-offset-2">
                                         <h3>Vaccine History</h3>
 
                                             {this.state.pet.injections.map(i =>
-                                                <div>
-                                                    <h3>{i.name}</h3>
-                                                    <button className="btn btn-danger"
-                                                        onClick={this.removeInjection(i)}>Remove</button>
-                                                </div>
+                                                <Panel className="dt w-100 bb b--black-05 pb2 mt2">
 
+                                                    <div className="col-sm-6">
+                                                        <h5>{i.name}</h5>
+                                                    </div>
+                                                    <div className="col-sm-6">
+                                                        <form className="w-100 tr">
+                                                            <Button className="btn btn-danger" bsSize="xsmall"
+                                                                onClick={this.removeInjection(i)}>Remove</Button>
+                                                       </form>
+                                                    </div>
+                                                </Panel>
                                             )}
 
+                                        </main>
                                     </div>
                                     <div>
                                         <hr/>
