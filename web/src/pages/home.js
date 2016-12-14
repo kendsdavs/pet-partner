@@ -1,5 +1,5 @@
 const React = require('react')
-const {Link} = require('react-router')
+const {Link, Redirect} = require('react-router')
 import { Row, Col, Grid, Button } from 'react-bootstrap';
 const PetPartnerNav = require('../components/navbar')
 // const title = (
@@ -17,7 +17,7 @@ const Home = React.createClass({
     return {
       logout: false,
       picture: "https://4.bp.blogspot.com/-wzLUaLfsakQ/UQAzUJ-6ZAI/AAAAAAAABqc/v7ALKRmMiGA/s1600/Doctors+and+Indonesian+Doctors+Oath+beautiful.png",
-      nickname: ''
+      nickname: 'Local Vet'
     }
   },
   componentDidMount() {
@@ -29,11 +29,24 @@ const Home = React.createClass({
     }
 
   },
+  logout(e) {
+    this.props.auth.logout()
+    this.setState({logout:true})
+  },
   render() {
     return (
+
+      // <div className="container">
       <div>
-        {/* {panelsInstance} */}
         <PetPartnerNav />
+        { this.state.logout ? <Redirect to="/" /> : null }
+        <div className="container">
+          <div style={{float: 'right'}}><Button onClick={this.logout}>Logout</Button></div>
+          <img style={{height: '60px'}} src={this.state.picture} alt="headshot" />
+          <br />
+          {this.state.nickname}
+          {/* {panelsInstance} */}
+
         <Grid>
           <Row>
             <Col md={4} mdOffset={1}>
@@ -48,6 +61,7 @@ const Home = React.createClass({
             </Col>
           </Row>
         </Grid>
+        </div>
       </div>
     )
   }

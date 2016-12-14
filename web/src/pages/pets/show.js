@@ -51,7 +51,15 @@ const Pet = React.createClass({
                         <Row>
                             {/* <Col md={8} mdOffset={4} > */}
                             <Col xs={3}>
-                                <h1>Left Side</h1>
+                                <h3>Vaccine Quick View</h3>
+                                <h4>Received</h4>
+                                <ul className="list">
+                                {this.state.pet._id ? this.state.pet.injections.map(i =>
+                                  <li>{i.name}</li>
+                              ) : null }
+                                </ul>
+                                {' '}
+                                <h4>Upcoming Vaccines</h4>
 
                                 {/* <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
                                     {this.state.pet.injections ?
