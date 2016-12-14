@@ -12,6 +12,10 @@ const PetForm = require('./pages/pets/form')
 const CategoryForm = require('./pages/categories/form')
 const Categories = require('./pages/categories')
 const Category = require('./pages/categories/show')
+const auth = require('./utils/auth')(
+  process.env.REACT_APP_ID,
+  process.env.REACT_APP_DOMAIN
+)
 
 
 const App = React.createClass({

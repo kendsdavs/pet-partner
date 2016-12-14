@@ -1,11 +1,17 @@
 const http = require('http') //included with express
+require('dotenv').config()
 const express = require('express')
 const app = express()
+const jwt = require('express-jwt')
 const bodyParser = require('body-parser')
 const HTTPError = require('node-http-error')
 const port = process.env.PORT || 4000 //in .env file or in command line for testing
 const cors = require('cors')
 const dal = require('./dal.js')
+
+const checkJwt = jwt({
+    secret: process.env.AUTH0_SECRET
+})
 
 app.use(cors({origin: true, credentials: true}))
 
@@ -13,59 +19,10 @@ app.use(bodyParser.json({limit: '50mb'}));
  //parses the json
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 ///post handler
-
-////Owners/////
-app.post('/owners', function(req, res, next) {
-    dal.createOwner(req.body, function(err, result) {
-        if (err) {
-            var responseError = BuildResponseError(err)
-            return next(new HTTPError(responseError.status, responseError.message))
-        }
-        res.status(201).send(result)
-    })
-    console.log(req.body) ///given access to the "body" through "body-parser" required above
+app.get('/protected', checkJwt, (req, res) => {
+    res.send({message: "you are authorized"})
 })
 
-app.get('/owners/:id', function(req, res, next) {
-    const ownerID = req.params.id
-    dal.getOwner(ownerID, function(err, result) {
-        res.status(200).send(result)
-    })
-})
-
-app.get('/owners', function(req, res, next) {
-    dal.listOwners(function(err, result) {
-        res.status(200).send(result)
-    })
-})
-
-app.put('/owners/:id', function(req, res, next) {
-    dal.updateOwner(req.body, function(err, result) {
-        res.status(200).send(result)
-    })
-})
-
-app.delete('/owners/:id', function(req, res, next) {
-    const ownerID = req.params.id
-    dal.getOwner(ownerID, function callback(err, data) {
-        if (err) {
-            var responseError = BuildResponseError(err)
-            return next(new HTTPError(responseError.status, responseError.message))
-        }
-        if (data)
-            dal.deleteOwner(data, function(deletteerr, deleteresult) {
-                if (deletteerr) {
-                    var responseError = BuildResponseError(err)
-                    return next(new HTTPError(responseError.status, responseError.message))
-                }
-                if (deleteresult)
-                    console.log("Deleted " + req.path, deleteresult)
-                res.append('Content-type', 'application/json')
-                res.status(200).send(deleteresult)
-            })
-    })
-
-})
 //////////PETS////////////////
 app.post('/pets', function(req, res, next) {
     dal.createPet(req.body, function(err, result) {
