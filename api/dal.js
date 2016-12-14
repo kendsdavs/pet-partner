@@ -102,6 +102,7 @@ function listDocsByType(data, cb) {
 function createPet(data, cb) {
     data._id = "pet_" + data.name
     data.type = "pet"
+    data.injections = []
     db.put(data, function(err, response) {
         if (err) {
             console.log(err)

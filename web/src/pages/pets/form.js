@@ -2,7 +2,7 @@ const React = require('react')
 const {Link, Redirect} = require('react-router')
 const data = require('../../utils/data')()
 const TextField = require('../../components/text-field')
-const {Grid, Row, Col, Well} = require('react-bootstrap')
+const {Grid, Row, Col, Well, FormGroup, FormControl, ControlLabel} = require('react-bootstrap')
 
 const PetForm = React.createClass({
     getInitialState() {
@@ -87,8 +87,18 @@ const PetForm = React.createClass({
                 <form onSubmit={this.handleSubmit}>
                     <TextField label="Name" type="text" value={this.state.pet.name} onChange={this.handleChange('name')}/>
 
-                    <TextField label="Animal Type" type="text" value={this.state.pet.animal_type} onChange={this.handleChange('animal_type')}/>
+                    {/* <TextField label="Animal Type" type="text" value={this.state.pet.animal_type} onChange={this.handleChange('animal_type')}/> */}
+                    <FormGroup controlId="formControlsSelect">
+                        <ControlLabel>Animal Type</ControlLabel>
+                            <FormControl componentClass="select" placeholder="select" value={this.state.pet.animal_type}
+                                onChange={this.handleChange('animal_type')}>
+                                <option value="-1">Select</option>
 
+                                <option value="cat">Cat</option>
+                                <option value="dog">Dog</option>
+
+                            </FormControl>
+                    </FormGroup>
                     <TextField label="Breed" type="text" value={this.state.pet.breed} onChange={this.handleChange('breed')}/>
 
                     <TextField label="Date of Birth" type="date" value={this.state.pet.dob} onChange={this.handleChange('dob')}/>
@@ -98,7 +108,7 @@ const PetForm = React.createClass({
                     <TextField label="Gender" type="text" value={this.state.pet.gender} onChange={this.handleChange('gender')}/>
 
                     <TextField label="Breeder" type="text" value={this.state.pet.breeder} onChange={this.handleChange('breeder')}/>
-
+                    <hr />
                     <TextField label="Owner Name" type="text" value={this.state.pet.owner} onChange={this.handleChange('owner')}/>
 
                     <TextField label="Address" type="text" value={this.state.pet.address} onChange={this.handleChange('address')}/>
@@ -107,13 +117,18 @@ const PetForm = React.createClass({
 
                     <TextField label="Email" type="email" value={this.state.pet.email} onChange={this.handleChange('email')}/>
 
-                    <input type="file" onChange={this.handleFile} />
+                    <div class="form-group">
+                        <label for="exampleInputFile">Upload a Pet Photo</label>
+                        <input type="file" onChange={this.handleFile} />
+                    </div>
                     <div>
-                       <img src={this.state.pet.file} style={{height: '200px'}} />
+
+                        <img src={this.state.pet.file} style={{height: '200px'}} />
                      </div>
-                    <div>
-                        <button>Submit</button>
-                        <Link to={link}>Cancel</Link>
+                    <div className="form-group">
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                        {' '}
+                        <Link className="btn btn-default" to={link}>Cancel</Link>
                     </div>
 
                 </form>

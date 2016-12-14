@@ -73,6 +73,7 @@ const ProcedureForm = React.createClass({
         //   data.get("pets", this.props.location.query.pet_id)
         //     .then()
         data.get("pets", this.props.location.query.parent_id).then(res => this.setState({pet: res}))
+
         if (this.props.params.id) {
             data.get("procedures", this.props.params.id).then(res => {
                 this.setState({procedure: res})
@@ -174,14 +175,13 @@ const ProcedureForm = React.createClass({
                             <form onSubmit={this.handleSubmit}>
                                 <h3>{this.state.pet.name}</h3>
 
-                                <FormGroup  controlId="formControlsSelect">
+                                <FormGroup controlId="formControlsSelect">
                                     <ControlLabel>Select</ControlLabel>
-
-                                        <FormControl componentClass="select" placeholder="select" value={this.state.procedure.category._id} onChange={this.handleSelect}>
+                                        <FormControl componentClass="select" placeholder="select" value={this.state.procedure.category._id}
+                                            onChange={this.handleSelect}>
                                             <option value="-1">select</option>
                                             {this.state.categories.map(cat => <option key={cat._id} value={cat._id}>{cat.name}</option>)}
                                         </FormControl>
-
                                 </FormGroup>
 
                                 <TextField label="Date" type="date" value={this.state.procedure.date} onChange={this.handleChange('date')}/>
@@ -191,11 +191,9 @@ const ProcedureForm = React.createClass({
                                 <TextField label="Procedure" type="text" value={this.state.procedure.proc} onChange={this.handleChange('proc')}/>
 
                                 <div className="form-group">
-
-                                        <button type="submit" className="btn btn-primary">Submit</button>
-                                        {' '}
-                                        <Link className="btn btn-default" to={`/pets/${this.props.location.query.parent_id}/show`}>Cancel</Link>
-
+                                    <button type="submit" className="btn btn-primary">Submit</button>
+                                    {' '}
+                                    <Link className="btn btn-default" to={`/pets/${this.props.location.query.parent_id}/show`}>Cancel</Link>
                                 </div>
                             </form>
                             </Well>
