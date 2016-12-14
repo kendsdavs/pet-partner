@@ -25,7 +25,7 @@ const Home = React.createClass({
               <p>Look up a pets medical history here</p>
               <p><Button><Link to="/pets">Find a Pet</Link></Button></p>
             </Col>
-            <Col md={4} mdOffset={1}>
+            <Col md={4} mdOffset={2}>
               <h2>Add a Procedure</h2>
               <p>Ready to treat you patient?  Click here.</p>
               <p><Button><Link to="/pets">Add a Procedure</Link></Button></p>

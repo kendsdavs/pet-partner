@@ -15,7 +15,8 @@ const {
     Col,
     Form,
     FormControl,
-    Panel
+    Panel,
+    Well
 } = require('react-bootstrap')
 const PetCard = require('../pets/card')
 const VaccineForm = require('./vaccine-form')
@@ -168,17 +169,19 @@ const ProcedureForm = React.createClass({
 
                             {/* <h2>{petName}</h2> */}
                             <h2>{this.props.location.query.name}</h2>
-                            <form className="form-inline" onSubmit={this.handleSubmit}>
+                            <Grid><Row><Col xs={8} xsOffset={2}>
+                            <Well>
+                            <form onSubmit={this.handleSubmit}>
                                 <h3>{this.state.pet.name}</h3>
 
-                                <FormGroup controlId="formControlsSelect">
-                                    <ControlLabel className="col-sm-10">Select</ControlLabel>
-                                    <div className="col-sm-10">
+                                <FormGroup  controlId="formControlsSelect">
+                                    <ControlLabel>Select</ControlLabel>
+
                                         <FormControl componentClass="select" placeholder="select" value={this.state.procedure.category._id} onChange={this.handleSelect}>
                                             <option value="-1">select</option>
                                             {this.state.categories.map(cat => <option key={cat._id} value={cat._id}>{cat.name}</option>)}
                                         </FormControl>
-                                    </div>
+
                                 </FormGroup>
 
                                 <TextField label="Date" type="date" value={this.state.procedure.date} onChange={this.handleChange('date')}/>
@@ -188,21 +191,29 @@ const ProcedureForm = React.createClass({
                                 <TextField label="Procedure" type="text" value={this.state.procedure.proc} onChange={this.handleChange('proc')}/>
 
                                 <div className="form-group">
-                                    <div className="col-sm-10">
-                                        <button type="submit" className="btn btn-default">Submit</button>
-                                        <Link to={`/pets/${this.props.location.query.parent_id}/show`}>Cancel</Link>
-                                    </div>
+
+                                        <button type="submit" className="btn btn-primary">Submit</button>
+                                        {' '}
+                                        <Link className="btn btn-default" to={`/pets/${this.props.location.query.parent_id}/show`}>Cancel</Link>
+
                                 </div>
                             </form>
+                            </Well>
+                            </Col></Row></Grid>
                         </div>
                             </Tab>
                             <Tab eventKey={2} title="Pet Info">
-                                <PetCard pet={this.state.pet}/>
+
+                                <br />
+                                <Grid><Row><Col xs={8} xsOffset={2}>
+                                    <PetCard pet={this.state.pet}/>
+                                </Col></Row></Grid>
+
                             </Tab>
                             {/* <Tab eventKey={3} title="Vaccines"> <VaccineForm /> </Tab> */}
                             <Tab eventKey={3} title="Vaccines">
                                 <div className="container">
-                                    <main className="mw8 center">
+                                    <main className="text-center">
                                     <div>
                                         <h2>Add Vaccine to Medical History</h2>
                                         {this.state.vaccines.map(v => <article className="mw5 dib bg-white br3 pa3 pa4-ns ma3 ba b--black-10">

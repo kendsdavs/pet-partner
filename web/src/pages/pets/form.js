@@ -2,6 +2,7 @@ const React = require('react')
 const {Link, Redirect} = require('react-router')
 const data = require('../../utils/data')()
 const TextField = require('../../components/text-field')
+const {Grid, Row, Col, Well} = require('react-bootstrap')
 
 const PetForm = React.createClass({
     getInitialState() {
@@ -77,7 +78,12 @@ const PetForm = React.createClass({
         return (
             <div>
                 {this.state.resolved ? <Redirect to='/pets' /> : null}
-                <h1>{formName} Pet</h1>
+                <div className="page-header">
+                    <h1 className="text-center">{formName} Pet</h1>
+                </div>
+
+                <Grid><Row><Col xs={8} xsOffset={2}>
+                  <Well>
                 <form onSubmit={this.handleSubmit}>
                     <TextField label="Name" type="text" value={this.state.pet.name} onChange={this.handleChange('name')}/>
 
@@ -111,6 +117,8 @@ const PetForm = React.createClass({
                     </div>
 
                 </form>
+                </Well>
+                </Col></Row></Grid>
             </div>
 
         )

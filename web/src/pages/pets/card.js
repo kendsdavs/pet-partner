@@ -6,13 +6,6 @@ const PetCard = React.createClass({
   render() {
     return (
 
-      <Grid>
-        {/* <Row>
-          {/* <Col md={2} className="pull-left">
-            <h1>Left Side</h1>
-          </Col> */}
-          {/* <Col md={6} Offset={1} className="pull-right" > */}
-          <Col md={7} className="db center">
             <Well>
 
                 <Row>
@@ -29,15 +22,13 @@ const PetCard = React.createClass({
                       width="150"
                       rounded responsive
                       className="pull-right"
-                      
+
                      />
                   </Col>
                 </Row>
 
             </Well>
-          </Col>
-        {/* </Row> */}
-      </Grid>
+
 
 
 

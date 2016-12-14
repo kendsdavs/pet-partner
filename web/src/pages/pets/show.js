@@ -50,9 +50,9 @@ const Pet = React.createClass({
 
                         <Row>
                             {/* <Col md={8} mdOffset={4} > */}
-                            <Col md={2} className="pull-left">
+                            <Col xs={3}>
                                 <h1>Left Side</h1>
-                                
+
                                 {/* <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
                                     {this.state.pet.injections ?
                                     this.state.pet.injections.map(i =>
@@ -61,7 +61,7 @@ const Pet = React.createClass({
 
                                 </NavDropdown> */}
                             </Col>
-                            <Col md={5}>
+                            <Col xs={6}>
 
                                     <PetCard pet={this.state.pet}/>
 
@@ -69,7 +69,7 @@ const Pet = React.createClass({
                                     <PetCard pet={this.state.pet}/>
                                 </div> */}
                             </Col>
-                            <Col md={2} className="pull-right">
+                            <Col md={3} className="text-right">
                                 <h1>Right Side</h1>
                             </Col>
                         </Row>

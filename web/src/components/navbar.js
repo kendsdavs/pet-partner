@@ -8,7 +8,7 @@ const PetPartnerNav = React.createClass({
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">Pet Partners</a>
+            <a href="/">Pet Partners</a>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
