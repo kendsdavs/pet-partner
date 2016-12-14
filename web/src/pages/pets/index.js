@@ -35,7 +35,7 @@ const Pets = React.createClass({
         </Link></ListGroupItem>
 
     return (
-      <div>
+      <div >
         <PetPartnerNav />
         <Row><Col xs={6} xsOffset={3}>
         <form>

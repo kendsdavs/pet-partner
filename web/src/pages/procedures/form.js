@@ -19,7 +19,7 @@ const {
     Well
 } = require('react-bootstrap')
 const PetCard = require('../pets/card')
-const VaccineForm = require('./vaccine-form')
+
 
 const ProcedureForm = React.createClass({
     getInitialState() {
@@ -210,46 +210,46 @@ const ProcedureForm = React.createClass({
                             </Tab>
                             {/* <Tab eventKey={3} title="Vaccines"> <VaccineForm /> </Tab> */}
                             <Tab eventKey={3} title="Vaccines">
-                                <div className="container">
-                                    <main className="text-center">
-                                    <div>
-                                        <h2>Add Vaccine to Medical History</h2>
-                                        {this.state.vaccines.map(v => <article className="mw5 dib bg-white br3 pa3 pa4-ns ma3 ba b--black-10">
-                                            <div className="tc">
-                                                <img src="http://tachyons.io/img/avatar_1.jpg" className="br-100 h4 w4 dib ba b--black-05 pa2" title="Kitty staring at you"/>
-                                                <h1 className="f3 mb2">{v.name}</h1>
+                              <div className="container">
+                                  <main className="text-center">
+                                  <div>
+                                      <h2>Add Vaccine to Medical History</h2>
+                                      {this.state.vaccines.map(v => <article className="mw5 dib bg-white br3 pa3 pa4-ns ma3 ba b--black-10">
+                                          <div className="tc">
+                                              <img src="http://tachyons.io/img/avatar_1.jpg" className="br-100 h4 w4 dib ba b--black-05 pa2" title="Kitty staring at you"/>
+                                              <h1 className="f3 mb2">{v.name}</h1>
 
-                                                <button onClick={this.addVac(v)}>Add</button>
-                                            </div>
-                                        </article>)}
-                                    </div>
-                                    </main>
-                                    <div>
-                                      <main className="col-sm-8 col-sm-offset-2">
-                                        <h3>Vaccine History</h3>
+                                              <button onClick={this.addVac(v)}>Add</button>
+                                          </div>
+                                      </article>)}
+                                  </div>
+                                  </main>
+                                  <div>
+                                    <main className="col-sm-8 col-sm-offset-2">
+                                      <h3>Vaccine History</h3>
 
-                                            {this.state.pet.injections.map(i =>
-                                                <Panel className="dt w-100 bb b--black-05 pb2 mt2">
+                                          {this.state.pet.injections.map(i =>
+                                              <Panel className="dt w-100 bb b--black-05 pb2 mt2">
 
-                                                    <div className="col-sm-6">
-                                                        <h5>{i.name}</h5>
-                                                    </div>
-                                                    <div className="col-sm-6">
-                                                        <form className="w-100 tr">
-                                                            <Button className="btn btn-danger" bsSize="xsmall"
-                                                                onClick={this.removeInjection(i)}>Remove</Button>
-                                                       </form>
-                                                    </div>
-                                                </Panel>
-                                            )}
+                                                  <div className="col-sm-6">
+                                                      <h5>{i.name}</h5>
+                                                  </div>
+                                                  <div className="col-sm-6">
+                                                      <form className="w-100 tr">
+                                                          <Button className="btn btn-danger" bsSize="xsmall"
+                                                              onClick={this.removeInjection(i)}>Remove</Button>
+                                                     </form>
+                                                  </div>
+                                              </Panel>
+                                          )}
 
-                                        </main>
-                                    </div>
-                                    <div>
-                                        <hr/>
-                                        <button onClick={this.updateVacRecord}>Update Record</button>
-                                    </div>
-                                </div>
+                                      </main>
+                                  </div>
+                                  <div>
+                                      <hr/>
+                                      <button onClick={this.updateVacRecord}>Update Record</button>
+                                  </div>
+                              </div>
 
                             </Tab>
 

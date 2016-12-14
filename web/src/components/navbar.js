@@ -1,6 +1,6 @@
 const React = require('react')
 const {Link} = require('react-router')
-import {Navbar, NavItem, NavDropdown, Nav, MenuItem,} from 'react-bootstrap'
+
 
 const PetPartnerNav = React.createClass({
   render() {

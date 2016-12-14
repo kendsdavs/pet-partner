@@ -1,5 +1,5 @@
 const React = require('react')
-import { Grid, Row, Col, Image, Well} from 'react-bootstrap'
+import {Row, Col, Image, Well} from 'react-bootstrap'
 
 
 const PetCard = React.createClass({

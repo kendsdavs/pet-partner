@@ -2,7 +2,7 @@ const React = require('react')
 
 const TextField = React.createClass({
   render() {
-    const labelStyle = {display: 'block', color: 'green'}
+    
     return (
 
         <div className="form-group">
