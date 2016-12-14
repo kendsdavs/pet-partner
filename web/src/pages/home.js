@@ -13,6 +13,22 @@ const PetPartnerNav = require('../components/navbar')
 //   );
 
 const Home = React.createClass({
+  getInitialState() {
+    return {
+      logout: false,
+      picture: "https://4.bp.blogspot.com/-wzLUaLfsakQ/UQAzUJ-6ZAI/AAAAAAAABqc/v7ALKRmMiGA/s1600/Doctors+and+Indonesian+Doctors+Oath+beautiful.png",
+      nickname: ''
+    }
+  },
+  componentDidMount() {
+    // this.props.auth.notify(profile => {
+    //   this.setState({})
+    // })
+    if (!this.props.auth.loggedIn() && this.props.location.hash.indexOf('access_token') === -1) {
+      this.props.auth.login()
+    }
+
+  },
   render() {
     return (
       <div>
