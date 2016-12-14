@@ -9,7 +9,9 @@ const dal = require('./dal.js')
 
 app.use(cors({origin: true, credentials: true}))
 
-app.use(bodyParser.json()) //parses the json
+app.use(bodyParser.json({limit: '50mb'}));
+ //parses the json
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 ///post handler
 
 ////Owners/////
