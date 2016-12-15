@@ -201,7 +201,7 @@ const ProcedureForm = React.createClass({
                                         </FormControl>
                                 </FormGroup>
                                 {" "}
-                                    <Link className="btn btn-info text-right" to="/categories/new">Add a Category</Link>
+                                    <Link className="btn btn-info text-right" to={`/categories/new?parent_id=${this.state.procedure.parent_id}`}>Add a Category</Link>
                                 </Form>
 
                                 <TextField label="Date" type="date" value={this.state.procedure.date} onChange={this.handleChange('date')}/>
