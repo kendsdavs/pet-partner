@@ -238,7 +238,7 @@ const ProcedureForm = React.createClass({
                                           <div className="tc">
                                               <img src={petPic} className="br-100 h4 w4 dib ba b--black-05 pa2" title="Kitty staring at you" alt="cat or dog"/>
                                               <h1 className="f3 mb2">{v.name}</h1>
-                                              <button onClick={this.addVac(v)}>Add</button>
+                                              <Button bsStyle="info" onClick={this.addVac(v)}>Add</Button>
                                           </div>
                                       </article>)}
                                   </div>
@@ -255,7 +255,7 @@ const ProcedureForm = React.createClass({
                                                   </div>
                                                   <div className="col-sm-6">
                                                       <form className="w-100 tr">
-                                                          <Button className="btn btn-danger" bsSize="xsmall"
+                                                          <Button bsStyle="danger" bsSize="xsmall"
                                                               onClick={this.removeInjection(i)}>Remove</Button>
                                                      </form>
                                                   </div>
@@ -266,7 +266,12 @@ const ProcedureForm = React.createClass({
                                   </div>
                                   <div>
                                       <hr/>
-                                      <button onClick={this.updateVacRecord}>Update Record</button>
+                                      <Button bsStyle="primary" onClick={this.updateVacRecord}>Update Record</Button>
+                                  </div>
+                                  <div>
+                                      {" "}
+                                      <Link className="btn btn-default" to={`/pets/${this.props.location.query.parent_id}/show`}>Cancel</Link>
+
                                   </div>
                               </div>
 
