@@ -2,6 +2,8 @@ const React = require('react')
 const {Link, Redirect} = require('react-router')
 const data = require('../../utils/data')()
 const TextField = require('../../components/text-field')
+const {Form, Grid, Row, Col, Button, FormGroup} = require('react-bootstrap')
+
 
 const CategoryForm = React.createClass({
   getInitialState() {
@@ -47,21 +49,23 @@ const CategoryForm = React.createClass({
     return (
       <div>
         {this.state.resolved ? <Redirect to="/categories" /> : null}
+        <Grid><Row><Col xs={8} xsOffset={2}>
         <h1>{titleChange} Category</h1>
-        <form onSubmit={this.handleSubmit}>
+         <Form inline onSubmit={this.handleSubmit}>
+           <FormGroup controlId="formInlineName">
+             <TextField label="Category Name"
+              type="text"
+              value={this.state.category.name}
+              onChange={this.handleChange('name')} />
+            </FormGroup>
+          {" "}
+            <Button bsStyle="primary">Submit</Button>
+          {" "}
+            <Link to="/categories" className="btn btn-default">Back</Link>
 
-          <TextField label="Category Name"
-            type="text"
-            value={this.state.category.name}
-            onChange={this.handleChange('name')} />
 
-          <div>
-            <button>Submit</button>
-            |
-            <Link to="/categories">Back</Link>
-
-          </div>
-        </form>
+        </Form>
+      </Col></Row></Grid>
       </div>
     )
   }

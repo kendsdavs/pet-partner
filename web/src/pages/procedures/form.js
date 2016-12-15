@@ -12,6 +12,7 @@ const {
     Row,
     Col,
     FormControl,
+    Form,
     Panel,
     Well
 } = require('react-bootstrap')
@@ -189,14 +190,19 @@ const ProcedureForm = React.createClass({
                             <form onSubmit={this.handleSubmit}>
                                 <h3>{this.state.pet.name}</h3>
 
+                                <Form inline>
                                 <FormGroup controlId="formControlsSelect">
-                                    <ControlLabel>Select</ControlLabel>
+                                    <ControlLabel>Category</ControlLabel>
+                                    {" "}
                                         <FormControl componentClass="select" placeholder="select" value={this.state.procedure.category._id}
                                             onChange={this.handleSelect}>
-                                            <option value="-1">select</option>
+                                            <option value="-1">select a category</option>
                                             {this.state.categories.map(cat => <option key={cat._id} value={cat._id}>{cat.name}</option>)}
                                         </FormControl>
                                 </FormGroup>
+                                {" "}
+                                    <Link className="btn btn-info text-right" to="/categories/new">Add a Category</Link>
+                                </Form>
 
                                 <TextField label="Date" type="date" value={this.state.procedure.date} onChange={this.handleChange('date')}/>
 
