@@ -6,14 +6,11 @@ const {
     Tab,
     Tabs,
     FormGroup,
-    FieldGroup,
-    Checkbox,
     Button,
     ControlLabel,
     Grid,
     Row,
     Col,
-    Form,
     FormControl,
     Panel,
     Well
@@ -233,7 +230,7 @@ const ProcedureForm = React.createClass({
                                       <h2>Add Vaccine to Medical History</h2>
                                       {petTypeVac.map(v => <article className="mw5 dib bg-white br3 pa3 pa4-ns ma3 ba b--black-10">
                                           <div className="tc">
-                                              <img src={petPic} className="br-100 h4 w4 dib ba b--black-05 pa2" title="Kitty staring at you"/>
+                                              <img src={petPic} className="br-100 h4 w4 dib ba b--black-05 pa2" title="Kitty staring at you" alt="cat or dog"/>
                                               <h1 className="f3 mb2">{v.name}</h1>
                                               <button onClick={this.addVac(v)}>Add</button>
                                           </div>

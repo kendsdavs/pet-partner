@@ -27,6 +27,10 @@ const PetCard = React.createClass({
                       className="pull-right"
 
                      />
+                     {' '}
+                     <p><strong>Breed:</strong> {this.props.pet.breed}</p>
+                     <p><strong>Gender:</strong> {this.props.pet.gender}</p>
+
                   </Col>
                 </Row>
 

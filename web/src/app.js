@@ -12,6 +12,7 @@ const PetForm = require('./pages/pets/form')
 const CategoryForm = require('./pages/categories/form')
 const Categories = require('./pages/categories')
 const Category = require('./pages/categories/show')
+const {Button} = require('react-bootstrap')
 const auth = require('./utils/auth')(
   process.env.REACT_APP_ID,
   process.env.REACT_APP_DOMAIN
@@ -61,10 +62,10 @@ const App = React.createClass({
   }
 })
 
-const MatchWhenAuthorized =({component: Component, logout: logout, ...rest}) =>
+const MatchWhenAuthorized =({component: Component, logout, ...rest}) =>
   <Match {...rest} render={props => auth.loggedIn() ?
-      <div>
-        <div style={{float: 'right'}}><button onClick={logout}>Logout</button></div>
+      <div className="container">
+        <div style={{float: 'right'}}><Button onClick={logout}>Logout</Button></div>
         <Component {...props} logout={logout} />
       </div> : <Redirect to="/" />
   }

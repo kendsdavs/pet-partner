@@ -9,7 +9,8 @@ const {
     Well,
     FormGroup,
     FormControl,
-    ControlLabel
+    ControlLabel,
+    Checkbox
 } = require('react-bootstrap')
 
 const PetForm = React.createClass({
@@ -121,8 +122,17 @@ const PetForm = React.createClass({
                                     <TextField label="Date of Birth" type="date" value={this.state.pet.dob} onChange={this.handleChange('dob')}/>
 
                                     <TextField label="Markings" type="text" value={this.state.pet.markings} onChange={this.handleChange('markings')}/>
+                                    <FormGroup value={this.state.pet.gender} onChange={this.handleChange('gender')}>
+                                      <Checkbox inline value="male">
+                                        male
+                                      </Checkbox>
+                                      {' '}
+                                      <Checkbox inline value="female">
+                                        female
+                                      </Checkbox>
 
-                                    <TextField label="Gender" type="text" value={this.state.pet.gender} onChange={this.handleChange('gender')}/>
+                                    </FormGroup>
+                                    {/* <TextField label="Gender" type="text" value={this.state.pet.gender} onChange={this.handleChange('gender')}/> */}
 
                                     <TextField label="Breeder" type="text" value={this.state.pet.breeder} onChange={this.handleChange('breeder')}/>
                                     <hr/>
@@ -164,7 +174,7 @@ const PetForm = React.createClass({
                                     </div>
                                     <div>
 
-                                        <img src={this.state.pet.file} style={{
+                                        <img src={this.state.pet.file} alt="pet" style={{
                                             height: '200px'
                                         }}/>
                                     </div>

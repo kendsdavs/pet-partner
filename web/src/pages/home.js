@@ -31,7 +31,7 @@ const Home = React.createClass({
   render() {
     return (
 
-      <div>
+      <div className="container">
 
         <PetPartnerNav />
         { this.state.loggedout ? <Redirect to="/" /> : null }
@@ -42,7 +42,7 @@ const Home = React.createClass({
               <Modal.Title>Logged Out</Modal.Title>
             </Modal.Header>
 
-            <Modal.Body>
+            <Modal.Body className="text-center">
               <h1>You have been logged out of Pet Partner</h1>
             </Modal.Body>
 
@@ -64,13 +64,18 @@ const Home = React.createClass({
 
         <Grid>
           <Row>
-            <Col md={4} mdOffset={1}>
-              <h2>Find a Pet</h2>
+            <Col md={4}>
+              <h2>Find A Pet</h2>
               <p>Look up a pets medical history here</p>
               <p><Button><Link to="/pets">Find a Pet</Link></Button></p>
             </Col>
-            <Col md={4} mdOffset={2}>
-              <h2>Add a Procedure</h2>
+            <Col md={4}>
+              <h2>Add A Pet</h2>
+              <p>Look up a pets medical history here</p>
+              <p><Button><Link to="/pets/new">Find a Pet</Link></Button></p>
+            </Col>
+            <Col md={4}>
+              <h2>Add A Procedure</h2>
               <p>Ready to treat you patient?  Click here.</p>
               <p><Button><Link to="/pets">Add a Procedure</Link></Button></p>
             </Col>
