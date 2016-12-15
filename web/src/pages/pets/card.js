@@ -11,7 +11,7 @@ const PetCard = React.createClass({
                 <Row>
                   <Col xs={6}>
                     <h1>{this.props.pet.name}</h1>
-                    <h4>Owner: {this.props.pet.owner}</h4>
+                    <h4>Owner: {this.props.pet.ownerFirstName + " " + this.props.pet.ownerLastName}</h4>
                     <p>Address: {this.props.pet.address}</p>
                     <p>Email: {this.props.pet.email}</p>
                     <p>Phone: {this.props.pet.phone}</p>

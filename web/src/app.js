@@ -34,11 +34,9 @@ const App = React.createClass({
     return (
       <HashRouter>
         <div>
-          {this.state.loggedIn === false ? <Redirect to="/" /> : null }
+          {this.state.loggedout ? <Redirect to="/" /> : null }
           {/* <h1>Hello Pet Partner</h1> */}
-          <Match exactly pattern="/" render={props =>
-            <Home auth={auth} {...props} />
-          } />
+          <Match exactly pattern="/" render={props => <Home auth={auth} {...props} logout={this.logout} /> } />
           <MatchWhenAuthorized pattern="/about" component={About} />
 
           <MatchWhenAuthorized exactly pattern="/pets" component={Pets} logout={this.logout} />
@@ -63,11 +61,10 @@ const App = React.createClass({
   }
 })
 
-const MatchWhenAuthorized =({component: Component, logout, ...rest}) =>
-  <Match {...rest} render={props =>
-    auth.loggedIn() ?
+const MatchWhenAuthorized =({component: Component, logout: logout, ...rest}) =>
+  <Match {...rest} render={props => auth.loggedIn() ?
       <div>
-        <div style={{float: 'right'}}><button onClick={e => auth.logout() }>logout</button></div>
+        <div style={{float: 'right'}}><button onClick={logout}>Logout</button></div>
         <Component {...props} logout={logout} />
       </div> : <Redirect to="/" />
   }

@@ -61,7 +61,21 @@ const ProcedureForm = React.createClass({
                     name: "Leptospira",
                     _id: 5
                 }
-            ]
+            ],
+           catVac:[
+               {
+                   name: "catvac1",
+                   _id: 1
+               },
+               {
+                   name: "catvac2",
+                   _id: 2
+               },
+               {
+                   name: "catvac3",
+                   _id: 3
+               },
+           ]
         }
     },
     componentDidMount() {
@@ -154,6 +168,9 @@ const ProcedureForm = React.createClass({
         const nameChange = this.props.params.id
             ? this.state.procedure.petname
             : this.state.pet.name
+        const petTypeVac = this.state.pet.animal_type === "dog" ? this.state.vaccines : this.state.catVac
+        const petPic = this.state.pet.animal_type === "dog" ? "http://www.zastavki.com/pictures/originals/2013/Animals___Dogs_Dog_beagle_on_a_white_background_closeup_049955_.jpg"
+            : "http://tachyons.io/img/avatar_1.jpg"
         //const petName = this.props.location.query.name ? this.props.location.query.name : null
         return (
             <div>
@@ -214,11 +231,10 @@ const ProcedureForm = React.createClass({
                                   <main className="text-center">
                                   <div>
                                       <h2>Add Vaccine to Medical History</h2>
-                                      {this.state.vaccines.map(v => <article className="mw5 dib bg-white br3 pa3 pa4-ns ma3 ba b--black-10">
+                                      {petTypeVac.map(v => <article className="mw5 dib bg-white br3 pa3 pa4-ns ma3 ba b--black-10">
                                           <div className="tc">
-                                              <img src="http://tachyons.io/img/avatar_1.jpg" className="br-100 h4 w4 dib ba b--black-05 pa2" title="Kitty staring at you"/>
+                                              <img src={petPic} className="br-100 h4 w4 dib ba b--black-05 pa2" title="Kitty staring at you"/>
                                               <h1 className="f3 mb2">{v.name}</h1>
-
                                               <button onClick={this.addVac(v)}>Add</button>
                                           </div>
                                       </article>)}

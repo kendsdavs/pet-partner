@@ -2,20 +2,11 @@ const React = require('react')
 const {Link, Redirect} = require('react-router')
 import { Row, Col, Grid, Button } from 'react-bootstrap';
 const PetPartnerNav = require('../components/navbar')
-// const title = (
-// <h3>Find a Pet</h3>
-// );
-// const panelsInstance = (
-//   <div className="col-lg-4">
-//
-//
-//   </div>
-//   );
 
 const Home = React.createClass({
   getInitialState() {
     return {
-      logout: false,
+      loggedout: false,
       picture: "https://4.bp.blogspot.com/-wzLUaLfsakQ/UQAzUJ-6ZAI/AAAAAAAABqc/v7ALKRmMiGA/s1600/Doctors+and+Indonesian+Doctors+Oath+beautiful.png",
       nickname: 'Local Vet'
     }
@@ -31,13 +22,15 @@ const Home = React.createClass({
   },
   logout(e) {
     this.props.auth.logout()
-    this.setState({logout:true})
+    console.log('logged out!')
+    this.setState({loggedout:true})
   },
   render() {
     return (
 
       // <div className="container">
       <div>
+
         <PetPartnerNav />
         { this.state.logout ? <Redirect to="/" /> : null }
         <div className="container">

@@ -13,7 +13,8 @@ const PetForm = React.createClass({
                 breed: '',
                 dob: '',
                 markings: '',
-                owner: '',
+                ownerFirstName: '',
+                ownerLastName: '',
                 gender: '',
                 address: '',
                 phone: '',
@@ -109,8 +110,12 @@ const PetForm = React.createClass({
 
                     <TextField label="Breeder" type="text" value={this.state.pet.breeder} onChange={this.handleChange('breeder')}/>
                     <hr />
-                    <TextField label="Owner Name" type="text" value={this.state.pet.owner} onChange={this.handleChange('owner')}/>
+                    <h2>Owner Information</h2>
+                    <form className="form-inline">
+                    <TextField label="First Name" type="text" value={this.state.pet.ownerFirstName} onChange={this.handleChange('ownerFirstName')}/>
 
+                    <TextField label="Last Name" type="text" value={this.state.pet.ownerLastName} onChange={this.handleChange('ownerLastName')}/>
+                    </form>
                     <TextField label="Address" type="text" value={this.state.pet.address} onChange={this.handleChange('address')}/>
 
                     <TextField label="Phone" type="text" value={this.state.pet.phone} onChange={this.handleChange('phone')}/>
