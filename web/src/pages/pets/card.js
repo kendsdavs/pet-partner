@@ -4,9 +4,12 @@ import {Row, Col, Image, Well} from 'react-bootstrap'
 
 const PetCard = React.createClass({
   render() {
+    const color = {
+      background: "#C0D9E8"
+    }
     return (
 
-            <Well>
+            <Well style={color}>
 
                 <Row>
                   <Col xs={6}>

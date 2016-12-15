@@ -173,7 +173,7 @@ const ProcedureForm = React.createClass({
             : "http://tachyons.io/img/avatar_1.jpg"
         //const petName = this.props.location.query.name ? this.props.location.query.name : null
         return (
-            <div>
+            <div className="container">
                 {this.state.resolved || this.state.vacUpdate
                     ? <Redirect to={`/pets/${this.props.location.query.parent_id}/show`}/>
                     : null}

@@ -1,6 +1,6 @@
 const React = require('react')
 const {Link, Redirect} = require('react-router')
-import { Row, Col, Grid, Button } from 'react-bootstrap';
+import { Row, Col, Grid, Button, Modal } from 'react-bootstrap';
 const PetPartnerNav = require('../components/navbar')
 
 const Home = React.createClass({
@@ -8,37 +8,59 @@ const Home = React.createClass({
     return {
       loggedout: false,
       picture: "https://4.bp.blogspot.com/-wzLUaLfsakQ/UQAzUJ-6ZAI/AAAAAAAABqc/v7ALKRmMiGA/s1600/Doctors+and+Indonesian+Doctors+Oath+beautiful.png",
-      nickname: 'Local Vet'
+      nickname: 'Local Vet',
+      showLogout: false
     }
   },
   componentDidMount() {
-    // this.props.auth.notify(profile => {
-    //   this.setState({})
-    // })
     if (!this.props.auth.loggedIn() && this.props.location.hash.indexOf('access_token') === -1) {
       this.props.auth.login()
     }
-
   },
+  close(e) {
+    e.preventDefault()
+    this.setState({showLogout: false})
+  },
+
   logout(e) {
     this.props.auth.logout()
     console.log('logged out!')
-    this.setState({loggedout:true})
+    this.setState({loggedout:true, showLogout: true})
   },
+
   render() {
     return (
 
-      // <div className="container">
       <div>
 
         <PetPartnerNav />
-        { this.state.logout ? <Redirect to="/" /> : null }
-        <div className="container">
+        { this.state.loggedout ? <Redirect to="/" /> : null }
+        {this.state.showLogout ?
+          <div className="static-modal">
+          <Modal.Dialog >
+            <Modal.Header>
+              <Modal.Title>Logged Out</Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+              <h1>You have been logged out of Pet Partner</h1>
+            </Modal.Body>
+
+            <Modal.Footer>
+              <Button onClick={this.close}>Close</Button>
+            </Modal.Footer>
+
+          </Modal.Dialog>
+
+      </div>
+      : null }
+
+      {this.state.showLogout ? null
+        : <div className="container">
           <div style={{float: 'right'}}><Button onClick={this.logout}>Logout</Button></div>
           <img style={{height: '60px'}} src={this.state.picture} alt="headshot" />
           <br />
           {this.state.nickname}
-          {/* {panelsInstance} */}
 
         <Grid>
           <Row>
@@ -55,7 +77,9 @@ const Home = React.createClass({
           </Row>
         </Grid>
         </div>
+      }
       </div>
+
     )
   }
 })

@@ -81,6 +81,9 @@ const PetForm = React.createClass({
         }
     },
     render() {
+        const color = {
+          background: "#C0D9E8"
+        }
         const formName = this.props.params.id
             ? "Edit"
             : "New"
@@ -100,7 +103,7 @@ const PetForm = React.createClass({
                 <Grid>
                     <Row>
                         <Col xs={8} xsOffset={2}>
-                            <Well>
+                            <Well style={color}>
                                 <form onSubmit={this.handleSubmit}>
                                     <TextField label="Name" type="text" value={this.state.pet.name} onChange={this.handleChange('name')}/> {/* <TextField label="Animal Type" type="text" value={this.state.pet.animal_type} onChange={this.handleChange('animal_type')}/> */}
                                     <FormGroup controlId="formControlsSelect">

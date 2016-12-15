@@ -31,7 +31,7 @@ const Pets = React.createClass({
   render() {
     const list = pet =>
         <ListGroupItem key={pet._id}><Link to={`/pets/${pet._id}/show`}>
-          {pet.name}
+          {pet.name + " " + pet.ownerLastName}
         </Link></ListGroupItem>
 
     return (
@@ -56,9 +56,9 @@ const Pets = React.createClass({
                 {this.state.filtered.map(list)}
               </ListGroup>
             </Col></Row>
-        <Link to="/pets/new">Add Pet</Link>
-        ||
-        <Link to="/">Home</Link>
+        <Link className="btn btn-primary" to="/pets/new">Add Pet</Link>
+       {" "}
+        <Link className="btn btn-default" to="/">Home</Link>
       </div>
       </div>
     )

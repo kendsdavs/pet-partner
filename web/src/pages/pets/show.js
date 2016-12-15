@@ -78,7 +78,7 @@ const Pet = React.createClass({
                                 </div> */}
                             </Col>
                             <Col md={3} className="text-right">
-                                
+
                                 <nav>
                                     <Link className="btn btn-primary btn-block" to="/pets">Back to Pets</Link>
                                     <br />
@@ -95,16 +95,7 @@ const Pet = React.createClass({
 
                                 {this.state.pet._id
                                     ? <Procedures petID={this.state.pet._id}/>
-                                    : null}
-                                    <br />
-                                    <br />
-                                <nav className="text-center">
-                                    <Link to="/pets">Back to Pets</Link>
-                                    |
-                                    <a href="#" onClick={this.handleRemove}>Remove Pet</a>
-                                    |
-                                    <Link to={`/pets/${this.state.pet._id}/edit`}>Edit Pet</Link>
-                                </nav>
+                                    : null}                                
                             </main>
                         </div>}
             </div>
