@@ -48,24 +48,12 @@ const CategoryForm = React.createClass({
     const titleChange = this.props.params.id ? "Edit" : "New"
     return (
       <div>
+
         {this.state.resolved ? <Redirect to={`/procedures/new?parent_id=${this.props.location.query.parent_id}`} /> : null}
+
         <Grid><Row><Col xs={8} xsOffset={2}>
         <h1>{titleChange} Category</h1>
          <form onSubmit={this.handleSubmit}>
-           {/* <div className="form-group col-xs-6">
-               <Row>
-               <Col xs={4}>
-                   <label for="Category Name">Category Name</label>
-                   {' '}
-               </Col>
-               <Col xs={8}>
-                   <input type="text" className="form-control" style={{width: '200px'}}
-                     value={this.state.category.name} onChange={this.handleChange('name')}/>
-               </Col>
-               </Row>
-           </div> */}
-
-
 
            <FormGroup controlId="formInlineName">
              <TextField label="Category Name"
@@ -73,19 +61,14 @@ const CategoryForm = React.createClass({
               value={this.state.category.name}
               onChange={this.handleChange('name')} />
             </FormGroup>
+
             <div className="form-group">
                 <button type="submit" className="btn btn-primary">Submit</button>
                 {' '}
                 <Link className="btn btn-default" to={`/procedures/new?parent_id=${this.props.location.query.parent_id}`}>Cancel</Link>
             </div>
-          {/* {" "}
-            <Button bsStyle="primary">Submit</Button>
-          {" "}
-            <Link to="/categories" className="btn btn-default">Back</Link> */}
-
-
-        </form>
-      </Col></Row></Grid>
+          </form>
+        </Col></Row></Grid>
       </div>
     )
   }

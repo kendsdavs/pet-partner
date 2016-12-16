@@ -7,7 +7,6 @@ const PetPartnerNav = React.createClass({
     return (
       <nav className="navbar navbar-default">
         <div className="container-fluid">
-          {/* <!-- Brand and toggle get grouped for better mobile display --> */}
           <div className="navbar-header">
             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               <span className="sr-only">Toggle navigation</span>
@@ -21,7 +20,6 @@ const PetPartnerNav = React.createClass({
     {/* <!-- Collect the nav links, forms, and other content for toggling --> */}
     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul className="nav navbar-nav">
-        {/* <li className="active"><a href="#">Link <span className="sr-only">(current)</span></a></li> */}
         <li className="active"><Link to="/about">About <span className="sr-only">(current)</span></Link></li>
         <li><a href="#">New User</a></li>
         <li className="dropdown">

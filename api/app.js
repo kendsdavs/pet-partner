@@ -264,27 +264,6 @@ app.get('*', (req, res) => res.send({ok: true})) // '*' matches any route that c
 
 function BuildResponseError(err) {
 
-    // no sql error message example
-    //     { id: 'person_jackiekennedyo1922@gmail.org',
-    // error: 'conflict',
-    // reason: 'Document update conflict.',
-    // name: 'conflict',
-    // status: 409,
-    // message: 'Document update conflict.',
-    // ok: true }
-    //
-    // // custom DAL validation message example
-    //
-    // {
-    // error: 'Bad Request',
-    // reason: 'Unnecessary _id property within data.'
-    // name: 'Bad Request',
-    // status: 400,
-    // message: 'Unnecessary _id property within data.',
-    // ok: true }
-
-    // if the first three characters are a number then return the error code otherwise
-    //  default to 400 (bad request)
     const statuscheck = isNaN(err.message.substring(0, 3)) === true
         ? "400"
         : err.message.substring(0, 3)
@@ -307,11 +286,6 @@ function BuildResponseError(err) {
     errormsg.status = status
     errormsg.message = message
 
-    //   { error: 'Bad Request',
-    // reason: 'Missing email property within data',
-    // name: 'Bad Request',
-    // status: 400,
-    // message: 'Missing email property within data' }
     console.log("BuildResponseError-->", errormsg)
     return errormsg
 }

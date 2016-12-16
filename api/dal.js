@@ -21,8 +21,8 @@ var dal = {
     createProcedure: createProcedure,
     listProcedures: listProcedures,
     getProcedure: getProcedure,
-    updateProcedure: updateProcedure,
-    deleteProcedure: deleteProcedure,
+    updateProcedure,
+    deleteProcedure,
     createCategory,
     listCategories,
     getCategory,
@@ -100,7 +100,7 @@ function listDocsByType(data, cb) {
 ///////Pets/////////
 
 function createPet(data, cb) {
-    data._id = "pet_" + data.name
+    data._id = "pet_" + data.name + "_" + data.ownerLastName
     data.type = "pet"
     data.injections = []
     db.put(data, function(err, response) {

@@ -5,7 +5,7 @@ import {Row, Col, Image, Well} from 'react-bootstrap'
 const PetCard = React.createClass({
   render() {
     const color = {
-      background: "#C0D9E8"
+      background: "#ECECEA"
     }
     return (
 
@@ -35,10 +35,6 @@ const PetCard = React.createClass({
                 </Row>
 
             </Well>
-
-
-
-
 
     )
   }

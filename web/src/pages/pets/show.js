@@ -1,4 +1,4 @@
-//pets show page//
+//pets show page//procedure show page//pets-card show page
 const React = require('react')
 const {Link, Redirect} = require('react-router')
 const data = require('../../utils/data')()
@@ -10,7 +10,7 @@ import {Row, Col,} from 'react-bootstrap'
 
 const Pet = React.createClass({
     getInitialState() {
-        return {pet: {}, removed: false, showconfirm: false, procedures: []}
+        return {pet: { name: '', ownerLastName: '', ownerFirstName:''}, removed: false, showconfirm: false, procedures: []}
     },
     componentDidMount() {
         data.get("pets", this.props.params.id).then(res => this.setState({pet: res}))
@@ -18,8 +18,8 @@ const Pet = React.createClass({
             console.log("procedures are here ", procedures)
             return procedures
         })
-        //.then(procedures => procedures = procedures.docs)
-            .then(procedures => procedures.filter(proc => proc.parent_id === this.state.pet._id)).then(procedures => this.setState({procedures: procedures}))
+            .then(procedures => procedures.filter(proc => proc.parent_id === this.state.pet._id))
+            .then(procedures => this.setState({procedures: procedures}))
     },
     handleCancel(e) {
         e.preventDefault()
@@ -40,18 +40,19 @@ const Pet = React.createClass({
                 <PetPartnerNav/> {this.state.removed
                     ? <Redirect to="/pets"/>
                     : null}
+                {/* Remove a pet from the database */}
                 {this.state.showconfirm
                     ? <Confirm msg="Are you sure?" onCancel={this.handleCancel} onConfirm={this.handleConfirm}/>
                     : null}
-
+                {/* If not showing the Confirm delete screen show this */}
                 {this.state.showconfirm
                     ? null
                     : <div className="container">
-
+                {/* Left side bar */}
                         <Row>
-                            {/* <Col md={8} mdOffset={4} > */}
                             <Col xs={3}>
                                 <h3>Vaccine Quick View</h3>
+                                {/* Saved in the pet object as injections */}
                                 <h4>Received</h4>
                                 <ul className="list">
                                 {this.state.pet._id ? this.state.pet.injections.map(i =>
@@ -59,25 +60,17 @@ const Pet = React.createClass({
                               ) : null }
                                 </ul>
                                 {' '}
-                                <h4>Upcoming Vaccines</h4>
+                                {/* ToDo: <h4>Upcoming Vaccines</h4> */}
 
-                                {/* <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                                    {this.state.pet.injections ?
-                                    this.state.pet.injections.map(i =>
-                                        <MenuItem eventKey={this.state.pet.injections._id}>{this.state.pet.injections.name}</MenuItem>
-                                    ) : null }
-
-                                </NavDropdown> */}
                             </Col>
+                {/* middle pet card from pets/card.js */}
                             <Col xs={6}>
 
                                     <PetCard pet={this.state.pet}/>
 
-                                {/* <div className="container">
-                                    <PetCard pet={this.state.pet}/>
-                                </div> */}
                             </Col>
-                            <Col md={3} className="text-right">
+                {/* right side bar */}
+                            <Col xs={3} className="text-right">
 
                                 <nav>
                                     <Link className="btn btn-primary btn-block" to="/pets">Back to Pets</Link>
@@ -92,10 +85,10 @@ const Pet = React.createClass({
                         <br />
                         <br />
                             <main>
-
+                    {/* procedures table from procedures/index.js */}
                                 {this.state.pet._id
                                     ? <Procedures petID={this.state.pet._id}/>
-                                    : null}                                
+                                    : null}
                             </main>
                         </div>}
             </div>

@@ -62,16 +62,24 @@ const ProcedureForm = React.createClass({
             ],
            catVac:[
                {
-                   name: "catvac1",
+                   name: "Leukemia Virus",
                    _id: 1
                },
                {
-                   name: "catvac2",
+                   name: "Panleukopenia",
                    _id: 2
                },
                {
-                   name: "catvac3",
+                   name: "Calicivirus",
                    _id: 3
+               },
+               {
+                   name: "Rhinortracheitis",
+                   _id: 4
+               },
+               {
+                   name: "Pneumonitis",
+                   _id: 5
                },
            ]
         }
@@ -81,9 +89,7 @@ const ProcedureForm = React.createClass({
             console.log(res.docs)
             return res
         }).then(res => this.setState({categories: res.docs}))
-        // if(this.props.location.query.pet_id)
-        //   data.get("pets", this.props.location.query.pet_id)
-        //     .then()
+
         data.get("pets", this.props.location.query.parent_id).then(res => this.setState({pet: res}))
 
         if (this.props.params.id) {
@@ -134,7 +140,6 @@ const ProcedureForm = React.createClass({
         procedure.category = categories.find(category => {
             return category._id === e.target.value
         })
-        // console.log(procedure)
         this.setState({procedure})
     },
     handleTab(key) {
@@ -153,11 +158,8 @@ const ProcedureForm = React.createClass({
     },
     updateVacRecord(e) {
         e.preventDefault()
-        console.log("this.state.pet", this.state.pet)
-        data.put('pets', this.state.pet._id, this.state.pet).then(res => {
-            console.log("the pet record has been updated", res)
-            return res
-        }).then(res => this.setState({vacUpdate: true}))
+        data.put('pets', this.state.pet._id, this.state.pet)
+            .then(res => this.setState({vacUpdate: true}))
     },
     render() {
         const titleChange = this.props.params.id
@@ -169,7 +171,6 @@ const ProcedureForm = React.createClass({
         const petTypeVac = this.state.pet.animal_type === "dog" ? this.state.vaccines : this.state.catVac
         const petPic = this.state.pet.animal_type === "dog" ? "http://www.zastavki.com/pictures/originals/2013/Animals___Dogs_Dog_beagle_on_a_white_background_closeup_049955_.jpg"
             : "http://tachyons.io/img/avatar_1.jpg"
-        //const petName = this.props.location.query.name ? this.props.location.query.name : null
         return (
             <div className="container">
                 {this.state.resolved || this.state.vacUpdate
@@ -183,7 +184,7 @@ const ProcedureForm = React.createClass({
                                     Procedure</h1>
                             </div>
 
-                            {/* <h2>{petName}</h2> */}
+                        
                             <h2>{this.props.location.query.name}</h2>
                             <Grid><Row><Col xs={8} xsOffset={2}>
                             <Well>

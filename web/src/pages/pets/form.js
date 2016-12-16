@@ -93,105 +93,102 @@ const PetForm = React.createClass({
             : "/pets"
         return (
             <div>
-                {this.state.resolved
-                    ? <Redirect to='/pets'/>
-                    : null}
-                <div className="page-header">
-                    <h1 className="text-center">{formName}
-                        Pet</h1>
-                </div>
+              {this.state.resolved
+                  ? <Redirect to='/pets'/>
+                  : null}
+              <div className="page-header">
+                  <h1 className="text-center">{formName}
+                      Pet</h1>
+              </div>
 
-                <Grid>
-                    <Row>
-                        <Col xs={8} xsOffset={2}>
-                            <Well style={color}>
-                                <form onSubmit={this.handleSubmit}>
-                                    <TextField label="Name" type="text" value={this.state.pet.name} onChange={this.handleChange('name')}/> {/* <TextField label="Animal Type" type="text" value={this.state.pet.animal_type} onChange={this.handleChange('animal_type')}/> */}
-                                    <FormGroup controlId="formControlsSelect">
-                                        <ControlLabel>Animal Type</ControlLabel>
-                                        <FormControl componentClass="select" placeholder="select" value={this.state.pet.animal_type} onChange={this.handleChange('animal_type')}>
-                                            <option value="-1">Select</option>
+              <Grid><Row><Col xs={8} xsOffset={2}>
+                <Well style={color}>
+                    <form onSubmit={this.handleSubmit}>
+                      <TextField label="Name" type="text" value={this.state.pet.name} onChange={this.handleChange('name')}/> {/* <TextField label="Animal Type" type="text" value={this.state.pet.animal_type} onChange={this.handleChange('animal_type')}/> */}
+                      <FormGroup controlId="formControlsSelect">
+                          <ControlLabel>Animal Type</ControlLabel>
+                          <FormControl componentClass="select" placeholder="select" value={this.state.pet.animal_type} onChange={this.handleChange('animal_type')}>
+                              <option value="-1">Select</option>
 
-                                            <option value="cat">Cat</option>
-                                            <option value="dog">Dog</option>
+                              <option value="cat">Cat</option>
+                              <option value="dog">Dog</option>
 
-                                        </FormControl>
-                                    </FormGroup>
-                                    <TextField label="Breed" type="text" value={this.state.pet.breed} onChange={this.handleChange('breed')}/>
+                          </FormControl>
+                      </FormGroup>
 
-                                    <TextField label="Date of Birth" type="date" value={this.state.pet.dob} onChange={this.handleChange('dob')}/>
+                      <TextField label="Breed" type="text" value={this.state.pet.breed} onChange={this.handleChange('breed')}/>
 
-                                    <TextField label="Markings" type="text" value={this.state.pet.markings} onChange={this.handleChange('markings')}/>
-                                    <FormGroup value={this.state.pet.gender} onChange={this.handleChange('gender')}>
-                                      <Checkbox inline value="male">
-                                        male
-                                      </Checkbox>
-                                      {' '}
-                                      <Checkbox inline value="female">
-                                        female
-                                      </Checkbox>
+                      <TextField label="Date of Birth" type="date" value={this.state.pet.dob} onChange={this.handleChange('dob')}/>
 
-                                    </FormGroup>
-                                    {/* <TextField label="Gender" type="text" value={this.state.pet.gender} onChange={this.handleChange('gender')}/> */}
+                      <TextField label="Markings" type="text" value={this.state.pet.markings} onChange={this.handleChange('markings')}/>
 
-                                    <TextField label="Breeder" type="text" value={this.state.pet.breeder} onChange={this.handleChange('breeder')}/>
-                                    <hr/>
-                                    <h2>Owner Information</h2>
-                                    <form className="form-inline">
-                                        <div className="form-group col-xs-6">
-                                            <Row>
-                                            <Col xs={4}>
-                                                <label for="ownerFirstName">First Name</label>
-                                                {' '}
-                                            </Col>
-                                            <Col xs={8}>
-                                                <input type="text" className="form-control" style={{width: '200px'}} value={this.state.pet.ownerFirstName} onChange={this.handleChange('ownerFirstName')}/>
-                                            </Col>
-                                            </Row>
-                                        </div>
-                                        <div className="form-group col-xs-6">
-                                            <Row>
-                                            <Col xs={4}>
-                                                <label for="ownerLastName">Last Name</label>
-                                                {' '}
-                                            </Col>
-                                            <Col xs={8}>
-                                                <input type="text" className="form-control" style={{width: '200px'}} value={this.state.pet.ownerLastName} onChange={this.handleChange('ownerLastName')}/>
-                                            </Col>
-                                            </Row>
-                                        </div>
-                                    </form>
+                      <FormGroup value={this.state.pet.gender} onChange={this.handleChange('gender')}>
+                        <Checkbox inline value="male">
+                          male
+                        </Checkbox>
+                        {' '}
+                        <Checkbox inline value="female">
+                          female
+                        </Checkbox>
 
-                                    <TextField label="Address" type="text" value={this.state.pet.address} onChange={this.handleChange('address')}/>
+                      </FormGroup>
 
-                                    <TextField label="Phone" type="text" value={this.state.pet.phone} onChange={this.handleChange('phone')}/>
+                      <TextField label="Breeder" type="text" value={this.state.pet.breeder} onChange={this.handleChange('breeder')}/>
+                      <hr/>
 
-                                    <TextField label="Email" type="email" value={this.state.pet.email} onChange={this.handleChange('email')}/>
+                      <h2>Owner Information</h2>
+                      <form className="form-inline">
+                          <div className="form-group col-xs-6">
+                              <Row>
+                              <Col xs={4}>
+                                  <label for="ownerFirstName">First Name</label>
+                                  {' '}
+                              </Col>
+                              <Col xs={8}>
+                                  <input type="text" className="form-control" style={{width: '200px'}} value={this.state.pet.ownerFirstName} onChange={this.handleChange('ownerFirstName')}/>
+                              </Col>
+                              </Row>
+                          </div>
+                          <div className="form-group col-xs-6">
+                              <Row>
+                              <Col xs={4}>
+                                  <label for="ownerLastName">Last Name</label>
+                                  {' '}
+                              </Col>
+                              <Col xs={8}>
+                                  <input type="text" className="form-control" style={{width: '200px'}} value={this.state.pet.ownerLastName} onChange={this.handleChange('ownerLastName')}/>
+                              </Col>
+                              </Row>
+                          </div>
+                      </form>
 
-                                    <div class="form-group">
-                                        <label for="exampleInputFile">Upload a Pet Photo</label>
-                                        <input type="file" onChange={this.handleFile}/>
-                                    </div>
-                                    <div>
+                        <TextField label="Address" type="text" value={this.state.pet.address} onChange={this.handleChange('address')}/>
 
-                                        <img src={this.state.pet.file} alt="pet" style={{
-                                            height: '200px'
-                                        }}/>
-                                    </div>
-                                    <div className="form-group">
-                                        <button type="submit" className="btn btn-primary">Submit</button>
-                                        {' '}
-                                        <Link className="btn btn-default" to={link}>Cancel</Link>
-                                    </div>
+                        <TextField label="Phone" type="text" value={this.state.pet.phone} onChange={this.handleChange('phone')}/>
 
-                                </form>
-                            </Well>
-                        </Col>
-                    </Row>
-                </Grid>
-            </div>
+                        <TextField label="Email" type="email" value={this.state.pet.email} onChange={this.handleChange('email')}/>
 
-        )
-    }
+                        <div class="form-group">
+                            <label for="exampleInputFile">Upload a Pet Photo</label>
+                            <input type="file" onChange={this.handleFile}/>
+                        </div>
+                        <div>
+
+                            <img src={this.state.pet.file} alt="pet" style={{
+                                height: '200px'
+                            }}/>
+                        </div>
+                        <div className="form-group">
+                            <button type="submit" className="btn btn-primary">Submit</button>
+                            {' '}
+                            <Link className="btn btn-default" to={link}>Cancel</Link>
+                        </div>
+
+                    </form>
+                </Well>
+            </Col></Row></Grid>
+          </div>
+      )
+  }
 })
 module.exports = PetForm
