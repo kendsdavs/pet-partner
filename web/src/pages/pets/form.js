@@ -85,9 +85,12 @@ const PetForm = React.createClass({
         const color = {
           background: "#C0D9E8"
         }
+        {/* changes the name of the form from New to Edit */}
         const formName = this.props.params.id
             ? "Edit"
             : "New"
+        {/* changes the route based on if you were adding or editing a pet */}
+
         const link = this.props.params.id
             ? `/pets/${this.props.params.id}/show`
             : "/pets"
@@ -97,10 +100,9 @@ const PetForm = React.createClass({
                   ? <Redirect to='/pets'/>
                   : null}
               <div className="page-header">
-                  <h1 className="text-center">{formName}
-                      Pet</h1>
+                  <h1 className="text-center">{formName} Pet</h1>
               </div>
-
+{/* The Form */}
               <Grid><Row><Col xs={8} xsOffset={2}>
                 <Well style={color}>
                     <form onSubmit={this.handleSubmit}>
@@ -115,7 +117,7 @@ const PetForm = React.createClass({
 
                           </FormControl>
                       </FormGroup>
-
+                      {/*Textfield is a custom component */}
                       <TextField label="Breed" type="text" value={this.state.pet.breed} onChange={this.handleChange('breed')}/>
 
                       <TextField label="Date of Birth" type="date" value={this.state.pet.dob} onChange={this.handleChange('dob')}/>
@@ -139,26 +141,16 @@ const PetForm = React.createClass({
                       <h2>Owner Information</h2>
                       <form className="form-inline">
                           <div className="form-group col-xs-6">
-                              <Row>
-                              <Col xs={4}>
                                   <label for="ownerFirstName">First Name</label>
                                   {' '}
-                              </Col>
-                              <Col xs={8}>
+
                                   <input type="text" className="form-control" style={{width: '200px'}} value={this.state.pet.ownerFirstName} onChange={this.handleChange('ownerFirstName')}/>
-                              </Col>
-                              </Row>
                           </div>
                           <div className="form-group col-xs-6">
-                              <Row>
-                              <Col xs={4}>
+
                                   <label for="ownerLastName">Last Name</label>
                                   {' '}
-                              </Col>
-                              <Col xs={8}>
                                   <input type="text" className="form-control" style={{width: '200px'}} value={this.state.pet.ownerLastName} onChange={this.handleChange('ownerLastName')}/>
-                              </Col>
-                              </Row>
                           </div>
                       </form>
 
@@ -167,7 +159,7 @@ const PetForm = React.createClass({
                         <TextField label="Phone" type="text" value={this.state.pet.phone} onChange={this.handleChange('phone')}/>
 
                         <TextField label="Email" type="email" value={this.state.pet.email} onChange={this.handleChange('email')}/>
-
+    {/* Upload a file */}
                         <div class="form-group">
                             <label for="exampleInputFile">Upload a Pet Photo</label>
                             <input type="file" onChange={this.handleFile}/>

@@ -13,10 +13,10 @@ const Procedures = React.createClass({
   },
   componentDidMount() {
     data.list('procedures')
-      .then(procedures => {
-        console.log("these are the results of mount", procedures)
-        return procedures
-      })
+      // .then(procedures => {
+      //   console.log("these are the results of mount", procedures)
+      //   return procedures
+      // })
       // .then(procedures => procedures = procedures.doc)
       .then(filter(propEq('parent_id', this.props.petID)))
       .then(procedures => {
@@ -49,33 +49,26 @@ const Procedures = React.createClass({
                   </Row>
             </Grid>
 
-        {/* <Button pullRight>
-          <Link to={`/procedures/new?pet_id=${this.props.petID}`}>Add Procedure</Link>
-        </Button> */}
 
-        {/* <Link to={`/procedures/new?pet_id=${this.state.pet._id}&name=${this.state.pet.name}`}>Add Procedure</Link> */}
         <div className="container">
           <Row>
             <Col md={8} mdOffset={2}>
-              {/* className="pull-right" */}
-          <Table striped bordered condensed hover>
-            <thead>
-              <tr>
-                <td>Name</td>
-                <td>Date</td>
-                <td>Category</td>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.procedures.map(record)}
-            </tbody>
+              <Table striped bordered condensed hover>
+                <thead>
+                  <tr>
+                    <td>Name</td>
+                    <td>Date</td>
+                    <td>Category</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.procedures.map(record)}
+                </tbody>
 
-          </Table>
-          </Col>
+              </Table>
+            </Col>
           </Row>
-          </div>
-        {/* <Link to="/procedures/new">Add Procedure</Link> */}
-
+        </div>  
       </div>
 
     )

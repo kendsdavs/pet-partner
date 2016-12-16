@@ -85,10 +85,12 @@ const ProcedureForm = React.createClass({
         }
     },
     componentDidMount() {
-        data.list("categories").then(res => {
-            console.log(res.docs)
-            return res
-        }).then(res => this.setState({categories: res.docs}))
+        data.list("categories")
+            // .then(res => {
+            // console.log(res.docs)
+            // return res
+        // })
+        .then(res => this.setState({categories: res.docs}))
 
         data.get("pets", this.props.location.query.parent_id).then(res => this.setState({pet: res}))
 
@@ -107,7 +109,7 @@ const ProcedureForm = React.createClass({
             pet.injections = [
                 vaccine, ...injections
             ]
-            console.log("pet injections", pet.injections)
+            //console.log("pet injections", pet.injections)
             this.setState({pet})
         }
     },
@@ -136,7 +138,7 @@ const ProcedureForm = React.createClass({
             ...this.state.procedure
         }
         const categories = [...this.state.categories]
-        console.log(categories)
+        //console.log(categories)
         procedure.category = categories.find(category => {
             return category._id === e.target.value
         })
@@ -148,10 +150,12 @@ const ProcedureForm = React.createClass({
     handleSubmit(e) {
         e.preventDefault()
         if (this.state.procedure._id) {
-            data.put('procedures', this.state.procedure._id, this.state.procedure).then(res => {
-                console.log("this is state; ", this.state.procedure)
-                return res
-            }).then(res => this.setState({resolved: true}))
+            data.put('procedures', this.state.procedure._id, this.state.procedure)
+            //     .then(res => {
+            //     console.log("this is state; ", this.state.procedure)
+            //     return res
+            // })
+                .then(res => this.setState({resolved: true}))
         } else {
             data.post('procedures', this.state.procedure).then(res => this.setState({resolved: true}))
         }
@@ -168,6 +172,7 @@ const ProcedureForm = React.createClass({
         const nameChange = this.props.params.id
             ? this.state.procedure.petname
             : this.state.pet.name
+    {/* checks for the type of pet, cat or dog, to filter specific set of vaccines*/}
         const petTypeVac = this.state.pet.animal_type === "dog" ? this.state.vaccines : this.state.catVac
         const petPic = this.state.pet.animal_type === "dog" ? "http://www.zastavki.com/pictures/originals/2013/Animals___Dogs_Dog_beagle_on_a_white_background_closeup_049955_.jpg"
             : "http://tachyons.io/img/avatar_1.jpg"
@@ -176,6 +181,7 @@ const ProcedureForm = React.createClass({
                 {this.state.resolved || this.state.vacUpdate
                     ? <Redirect to={`/pets/${this.props.location.query.parent_id}/show`}/>
                     : null}
+        {/*Health Check Form */}
                 <Tabs activeKey={this.state.key} onSelect={this.handleTab} id="controlled-tab-example">
                     <Tab eventKey={1} title="Health Check">
                         <div className="container">
@@ -184,13 +190,13 @@ const ProcedureForm = React.createClass({
                                     Procedure</h1>
                             </div>
 
-                        
+
                             <h2>{this.props.location.query.name}</h2>
                             <Grid><Row><Col xs={8} xsOffset={2}>
                             <Well>
                             <form onSubmit={this.handleSubmit}>
                                 <h3>{this.state.pet.name}</h3>
-
+                {/*Select or add a category to the db.  Categories is a model*/}
                                 <Form inline>
                                 <FormGroup controlId="formControlsSelect">
                                     <ControlLabel>Category</ControlLabel>
@@ -202,6 +208,7 @@ const ProcedureForm = React.createClass({
                                         </FormControl>
                                 </FormGroup>
                                 {" "}
+                                {/*link to add a category*/}
                                     <Link className="btn btn-info text-right" to={`/categories/new?parent_id=${this.state.procedure.parent_id}`}>Add a Category</Link>
                                 </Form>
 
@@ -220,6 +227,7 @@ const ProcedureForm = React.createClass({
                             </Well>
                             </Col></Row></Grid>
                         </div>
+                    {/*Pet info from pet/card.js*/}
                             </Tab>
                             <Tab eventKey={2} title="Pet Info">
 
@@ -229,12 +237,14 @@ const ProcedureForm = React.createClass({
                                 </Col></Row></Grid>
 
                             </Tab>
-                            {/* <Tab eventKey={3} title="Vaccines"> <VaccineForm /> </Tab> */}
+                {/*Add vaccines to Pet objects.  */}
+
                             <Tab eventKey={3} title="Vaccines">
                               <div className="container">
                                   <main className="text-center">
                                   <div>
                                       <h2>Add Vaccine to Medical History</h2>
+    {/* checks for the type of pet, cat or dog, to filter specific set of vaccines*/}
                                       {petTypeVac.map(v => <article className="mw5 dib bg-white br3 pa3 pa4-ns ma3 ba b--black-10">
                                           <div className="tc">
                                               <img src={petPic} className="br-100 h4 w4 dib ba b--black-05 pa2" title="Kitty staring at you" alt="cat or dog"/>
@@ -247,7 +257,7 @@ const ProcedureForm = React.createClass({
                                   <div>
                                     <main className="col-sm-8 col-sm-offset-2">
                                       <h3>Vaccine History</h3>
-
+                        {/*Shows vaccines the pet has already had */}
                                           {this.state.pet.injections.map(i =>
                                               <Panel className="dt w-100 bb b--black-05 pb2 mt2">
 

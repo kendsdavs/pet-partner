@@ -1,3 +1,6 @@
+///WIP.  Use redux??///
+
+
 const React = require('react')
 // const {FormGroup, Button, ControlLable, Grid, Row, Col, Form, Checkbox} = require('react-bootstrap')
 //const Vacbox = require("../../components/checkbox")

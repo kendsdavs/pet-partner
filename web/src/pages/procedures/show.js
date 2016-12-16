@@ -1,4 +1,4 @@
-//procedures show page//
+//show a single procedure page//
 const React = require('react')
 const {Link, Redirect} = require('react-router')
 const data = require('../../utils/data')()
@@ -21,10 +21,10 @@ const Procedure = React.createClass({
       .then(procedure => data.get('pets', procedure.parent_id)
         .then(pet => set(lensProp('pet'), pet, procedure))
       )
-      .then(procedure => {
-        console.log("this is now a procedure", procedure)
-        return procedure
-      })
+      // .then(procedure => {
+      //   console.log("this is now a procedure", procedure)
+      //   return procedure
+      // })
       .then(procedure => this.setState({procedure: procedure}))
   },
   handleCancel(e) {
@@ -64,7 +64,6 @@ const Procedure = React.createClass({
             <h1>{this.state.procedure.proc}</h1>
 
               <nav>
-                {/* <Link to={`/procedures/${this.state.procedure._id}/edit?parent_id=${this.state.procedure.parent_id}`}>Edit Procedure</Link> */}
 
               <Link to={`/procedures/${this.state.procedure._id}/edit?parent_id=${this.state.procedure.parent_id}`}>Edit Procedure</Link>
               |

@@ -1,3 +1,5 @@
+///Pet Search Page///
+
 const React = require('react')
 const {Link} = require('react-router')
 const data = require('../../utils/data')()
@@ -40,6 +42,7 @@ const Pets = React.createClass({
                 <Row>
                     <Col xs={6} xsOffset={3}>
                         <form>
+                          {/*search for pets*/}
                             <FormGroup controlId="formValidationSuccess1" validationState="success">
                                 <ControlLabel>Search for a Pet</ControlLabel>
                                 <FormControl onChange={this.filter} type="text" placeholder="search"/>
