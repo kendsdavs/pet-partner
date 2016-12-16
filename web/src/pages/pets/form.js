@@ -37,11 +37,13 @@ const PetForm = React.createClass({
     },
     componentDidMount() {
         if (this.props.params.id) {
-            console.log("pet id in state ", this.props.params.id)
-            data.get("pets", this.props.params.id).then(res => {
-                console.log("results that were mounted ", res)
-                return res
-            }).then(res => {
+            //console.log("pet id in state ", this.props.params.id)
+            data.get("pets", this.props.params.id)
+            //     .then(res => {
+            //     console.log("results that were mounted ", res)
+            //     return res
+            // })
+            .then(res => {
                 this.setState({pet: res})
             })
         }

@@ -14,10 +14,11 @@ const Pet = React.createClass({
     },
     componentDidMount() {
         data.get("pets", this.props.params.id).then(res => this.setState({pet: res}))
-        data.list('procedures').then(procedures => {
-            console.log("procedures are here ", procedures)
-            return procedures
-        })
+        data.list('procedures')
+        //     .then(procedures => {
+        //     console.log("procedures are here ", procedures)
+        //     return procedures
+        // })
             .then(procedures => procedures.filter(proc => proc.parent_id === this.state.pet._id))
             .then(procedures => this.setState({procedures: procedures}))
     },

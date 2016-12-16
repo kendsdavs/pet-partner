@@ -48,7 +48,7 @@ module.exports = function () {
       headers: setHeader({})
     })
       .then(res => res.json())
-      .then(json => { console.log(json); return json }) //tap function: accepts a value and returns the same value/debugging trip
+      // .then(json => { console.log(json); return json }) //tap function: accepts a value and returns the same value/debugging trip
   }
 
   const remove = function(model, id, doc) {
