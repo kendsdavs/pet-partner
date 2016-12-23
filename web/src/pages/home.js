@@ -66,13 +66,13 @@ const Home = React.createClass({
           <Row>
             <Col md={4}>
               <h2>Find A Pet</h2>
-              <p>Look up a pets medical history here</p>
+              <p>Look up a patient's medical history.</p>
               <p><Button><Link to="/pets">Find a Pet</Link></Button></p>
             </Col>
             <Col md={4}>
               <h2>Add A Pet</h2>
-              <p>Look up a pets medical history here</p>
-              <p><Button><Link to="/pets/new">Find a Pet</Link></Button></p>
+              <p>Add a new patient and begin their treatment.</p>
+              <p><Button><Link to="/pets/new">Add a Pet</Link></Button></p>
             </Col>
             <Col md={4}>
               <h2>Add A Procedure</h2>
